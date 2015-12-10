@@ -113,7 +113,6 @@ paths=(
     $HOME/.composer/vendor/bin
     $GOPATH/bin
     $HOME/Library/Android/sdk/platform-tools
-    $HOME/code/spartan/gitreflow/bin
 )
 
 export PATH="/usr/local/sbin"
