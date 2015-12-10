@@ -123,6 +123,7 @@ for p in ${paths[@]}; do
     fi
 done
 
+alias be='bundle exec'
 alias grep='grep --color'
 alias curlinfo='curl -w "url_effective:\t\t%{url_effective}\nhttp_code:\t\t%{http_code}\nhttp_connect:\t\t%{http_connect}\ntime_total:\t\t%{time_total}\ntime_namelookup:\t%{time_namelookup}\ntime_connect:\t\t%{time_connect}\ntime_pretransfer:\t%{time_pretransfer}\ntime_redirect:\t\t%{time_redirect}\ntime_starttransfer:\t%{time_starttransfer}\nsize_download:\t\t%{size_download}\nsize_upload:\t\t%{size_upload}\nsize_header:\t\t%{size_header}\nsize_request:\t\t%{size_request}\nspeed_download:\t\t%{speed_download}\nspeed_upload:\t\t%{speed_upload}\ncontent_type:\t\t%{content_type}\nnum_connects:\t\t%{num_connects}\nnum_redirects:\t\t%{num_redirects}\nftp_entry_path:\t\t%{ftp_entry_path}\n" -o /dev/null -s'
 
