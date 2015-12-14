@@ -7,3 +7,6 @@ fi
 if [ -f ~/.bashrc ]; then
     source ~/.bashrc
 fi
+
+# Output my dotfiles status
+printf "dotfiles status: $(cd $HOME/.dotfiles/ && git_prompt)\n"
