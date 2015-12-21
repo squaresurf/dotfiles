@@ -1,0 +1,9 @@
+#!/bin/bash
+
+gem install \
+  chef \
+  hitch \
+  knife-acl \
+  rails \
+  rubocop \
+  slim_lint
