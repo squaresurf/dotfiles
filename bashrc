@@ -107,6 +107,7 @@ paths=(
     /usr/local/bin
     $HOME/Library/Haskell/bin
     $HOME/bin
+    $HOME/.bin
     $HOME/bin/terraform
     $HOME/bin/packer
     $OCLINT_HOME/bin
