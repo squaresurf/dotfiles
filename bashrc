@@ -155,7 +155,7 @@ alias unhitch='hitch -u'
 chruby="/usr/local/share/chruby"
 if [ -d $chruby ]; then
     source $chruby/chruby.sh
-    chruby '2.2.3'
+    chruby '2.2.4'
 fi
 
 # nova
