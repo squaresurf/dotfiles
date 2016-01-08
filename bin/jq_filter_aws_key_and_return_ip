@@ -1,0 +1,3 @@
+#!/bin/bash
+
+jq ".Reservations[].Instances[] | select(.KeyName == \"$1\") | .PublicIpAddress"
