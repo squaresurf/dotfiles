@@ -1,0 +1,13 @@
+#!/bin/bash
+if [[ -z "$1" || -z "$2" ]]; then
+    echo "You must pass the main branch and the branch to delete as arguments to this script.";
+    exit 1
+fi;
+
+main_branch=$1
+delete_branch=$2
+
+git fetch -p
+git checkout $main_branch
+git pull
+git branch -d $delete_branch
