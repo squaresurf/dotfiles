@@ -1,0 +1,18 @@
+#!/bin/bash
+sess_name=$(basename $(pwd) | sed "s/\./_dot_/g")
+
+exists=$(tmux list-sessions | grep "^$sess_name:")
+if [[ -n "$exists" ]]; then
+    tmux attach-session -t $sess_name
+    exit 0
+fi
+
+tmux new-session -d -s $sess_name -n vim
+
+if [[ -d .git ]]; then
+    tmux new-window -d -t $sess_name -n git
+fi
+
+tmux new-window -d -t $sess_name
+
+tmux attach
