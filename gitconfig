@@ -1,0 +1,26 @@
+[user]
+  name = Daniel Paul Searles
+  email = daniel.paul.searles@gmail.com
+[color]
+  ui = true
+[core]
+  excludesfile = ~/.gitignore
+  pager = less -FXR
+  editor = vim -u ~/.git-vimrc
+[pager]
+  status = on
+[alias]
+  glog = log --graph
+  lc = log -1 --pretty=%B
+  start = reflow start
+  review = reflow review
+  deliver = reflow deliver
+[include]
+  path = ~/.gitconfig.local
+[push]
+  default = simple
+[commit]
+  template = ~/.gitmessage
+[reflow]
+  git-server = GitHub
+  always-deploy-and-cleanup = true

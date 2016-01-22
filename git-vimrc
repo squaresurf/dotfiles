@@ -1,0 +1,7 @@
+" Hack to make sure editorconfig doesn't get loaded for git message editing.
+let g:loaded_EditorConfig = 1
+
+source ~/.vimrc
+
+set tw=72
+colorscheme default

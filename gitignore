@@ -1,0 +1,6 @@
+# env vars
+.envrc
+
+# Vim files.
+.*.sw?
+Session.vim
