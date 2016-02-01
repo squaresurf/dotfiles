@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+if [[ -z "$1" ]]; then
+  echo "Usage: $0 PYTHON_MODULE"
+  exit 1
+fi
+
+if [[ -z "$EDITOR" ]]; then
+  echo "The \$EDITOR environment variable must be set."
+  exit 2
+fi
+
+module_path=$(
+  python -c "import os; print(os.path.dirname(__import__('$1').__file__))"
+)
+
+if [[ -n "$module_path" ]]; then
+  $EDITOR $module_path
+fi
