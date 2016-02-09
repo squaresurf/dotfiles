@@ -1,0 +1,5 @@
+#!/bin/bash
+
+dirpath=$(dirname $0)
+cp $dirpath/rcrc $HOME/.rcrc
+rcup -v
