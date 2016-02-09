@@ -15,6 +15,7 @@
   start = reflow start
   review = reflow review
   deliver = reflow deliver
+  st = diff --staged
 [include]
   path = ~/.gitconfig.local
 [push]
@@ -22,8 +23,8 @@
 [commit]
   template = ~/.gitmessage
 [reflow]
-  git-server = GitHub
+	git-server = GitHub
   always-deploy-and-cleanup = true
 [github]
-  site = https://github.com
-  endpoint = https://api.github.com
+	site = https://github.com
+	endpoint = https://api.github.com
