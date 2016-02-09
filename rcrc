@@ -1,3 +1,5 @@
 COPY_ALWAYS="rcrc"
 DOTFILES_DIRS="$HOME/.dotfiles"
 EXCLUDES="README.md LICENSE install"
+TAGS="mac"
+UNDOTTED="bin LaunchAgents"

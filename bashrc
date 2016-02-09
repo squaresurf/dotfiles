@@ -93,8 +93,6 @@ export GOPATH="$HOME/code/go"
 # C
 export OCLINT_HOME="$HOME/bin/oclint-0.7-x86_64-apple-darwin-10"
 
-# User specific aliases and functions
-
 # This is in reverse order.
 paths=(
     /usr/texbin
@@ -107,7 +105,6 @@ paths=(
     /usr/local/bin
     $HOME/Library/Haskell/bin
     $HOME/bin
-    $HOME/.bin
     $HOME/bin/terraform
     $HOME/bin/packer
     $OCLINT_HOME/bin
@@ -123,6 +120,7 @@ for p in ${paths[@]}; do
     fi
 done
 
+# User specific aliases and functions
 alias be='bundle exec'
 alias grep='grep --color'
 alias curlinfo='curl -w "url_effective:\t\t%{url_effective}\nhttp_code:\t\t%{http_code}\nhttp_connect:\t\t%{http_connect}\ntime_total:\t\t%{time_total}\ntime_namelookup:\t%{time_namelookup}\ntime_connect:\t\t%{time_connect}\ntime_pretransfer:\t%{time_pretransfer}\ntime_redirect:\t\t%{time_redirect}\ntime_starttransfer:\t%{time_starttransfer}\nsize_download:\t\t%{size_download}\nsize_upload:\t\t%{size_upload}\nsize_header:\t\t%{size_header}\nsize_request:\t\t%{size_request}\nspeed_download:\t\t%{speed_download}\nspeed_upload:\t\t%{speed_upload}\ncontent_type:\t\t%{content_type}\nnum_connects:\t\t%{num_connects}\nnum_redirects:\t\t%{num_redirects}\nftp_entry_path:\t\t%{ftp_entry_path}\n" -o /dev/null -s'
@@ -133,8 +131,10 @@ export LC_ALL=$LANG
 export HISTCONTROL='ignoreboth:erasedups'
 
 # Mac Aliases
-alias ls='ls -G'
-alias stat='stat -x'
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  alias ls='ls -G'
+  alias stat='stat -x'
+fi
 
 if [ -f ~/.nova/environment.bash ]; then
     . ~/.nova/environment.bash
