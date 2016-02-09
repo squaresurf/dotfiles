@@ -1,5 +1,6 @@
 # env vars
 .envrc
+.direnv
 
 # Vim files.
 .*.sw?
