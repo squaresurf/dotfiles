@@ -136,10 +136,6 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
   alias stat='stat -x'
 fi
 
-if [ -f ~/.nova/environment.bash ]; then
-    . ~/.nova/environment.bash
-fi
-
 # Add the following to your ~/.bashrc or ~/.zshrc
 #
 # Alternatively, copy/symlink this file and source in your shell.  See `hitch --setup-path`.
