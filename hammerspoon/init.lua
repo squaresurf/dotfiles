@@ -10,7 +10,7 @@ function reloadConfig(files)
     hs.reload()
   end
 end
-hs.pathwatcher.new(os.getenv("HOME") .. "/.homesick/repos/hammerspoon-castle/home/.hammerspoon/", reloadConfig):start()
+hs.pathwatcher.new(os.getenv("HOME") .. "/.dotfiles/hammerspoon/", reloadConfig):start()
 hs.alert.show("Config loaded")
 
 -- Music Hotkeys
