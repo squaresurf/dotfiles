@@ -109,6 +109,7 @@ paths=(
     $HOME/bin/packer
     $OCLINT_HOME/bin
     $HOME/.composer/vendor/bin
+    /usr/local/go/bin
     $GOPATH/bin
     $HOME/Library/Android/sdk/platform-tools
 )
