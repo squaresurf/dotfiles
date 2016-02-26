@@ -200,6 +200,8 @@ let g:syntastic_javascript_checkers = ["eslint"]
 let g:syntastic_ruby_checkers = ["rubocop"]
 let g:syntastic_c_checkers = ["oclint"]
 
+let g:syntastic_python_pylint_post_args = '--msg-template="{path}:{line}:{column}:{C}: [{symbol} {msg_id}] {msg}"'
+
 " start interactive easyalign in visual mode (e.g. vip<enter>)
 vmap <Enter> <Plug>(EasyAlign)
 
