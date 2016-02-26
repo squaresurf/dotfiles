@@ -15,5 +15,8 @@ module_path=$(
 )
 
 if [[ -n "$module_path" ]]; then
-  $EDITOR $module_path
+  (
+    cd $module_path;
+    $EDITOR $module_path
+  )
 fi
