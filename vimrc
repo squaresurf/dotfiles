@@ -66,7 +66,7 @@ set foldlevel=20
 
 " set up invisible chars view
 scriptencoding utf8
-set listchars=eol:\¬,tab:»\
+set listchars=tab:»\ ,eol:\¬
 set list
 
 " update tab completion to be more akin to bash.
