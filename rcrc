@@ -1,5 +1,5 @@
 COPY_ALWAYS="rcrc"
-DOTFILES_DIRS="$HOME/.dotfiles"
+DOTFILES_DIRS="$HOME/.dotfiles $HOME/.dotfiles-secret"
 EXCLUDES="README.md LICENSE install"
 TAGS="mac"
 UNDOTTED="bin LaunchAgents"
