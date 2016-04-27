@@ -15,12 +15,15 @@ Plugin 'chriskempson/vim-tomorrow-theme'
 
 " Self Explanatory plugins
 " Plugin 'jcf/vim-latex'
+Plugin 'avdgaag/vim-phoenix'
 Plugin 'benmills/vimux'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'elixir-lang/vim-elixir'
 Plugin 'elzr/vim-json.git'
 Plugin 'evanmiller/nginx-vim-syntax'
+Plugin 'fatih/vim-go'
 Plugin 'glench/vim-jinja2-syntax'
 Plugin 'groenewege/vim-less'
 Plugin 'hail2u/vim-css3-syntax'
@@ -29,6 +32,8 @@ Plugin 'jlanzarotta/bufexplorer'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'kien/ctrlp.vim'
 Plugin 'markcornick/vim-terraform.git'
+Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
 Plugin 'rizzatti/dash.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -86,6 +91,9 @@ nnoremap <Leader>w :w<cr>
 " check a file
 nnoremap <Leader>s :SyntasticCheck<cr>
 
+" see errors
+nnoremap <Leader>r :Errors<cr>
+
 " open BufExplorer
 nnoremap <Leader>e :BufExplorer<cr>
 
@@ -133,9 +141,6 @@ set smarttab
 set expandtab
 set tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType php,python setlocal tabstop=4 softtabstop=4 shiftwidth=4
-
-" Auto wrap at 80 characters
-set tw=80
 
 " get more info about commands and visual selections
 set showcmd
@@ -193,12 +198,17 @@ autocmd BufNewFile,BufRead Capfile,Gemfile,Berksfile,Vagrantfile,Guardfile setlo
 " open php documentation
 autocmd FileType php setlocal keywordprg=~/bin/phpdoc.sh
 
-let g:syntastic_php_checkers = ["phpcs", "php"]
-let g:syntastic_slim_checkers = ["slim_lint", "slimrb"]
-let g:syntastic_css_checkers = ["csslint"]
-let g:syntastic_javascript_checkers = ["eslint"]
-let g:syntastic_ruby_checkers = ["rubocop"]
+" syntastic
+
 let g:syntastic_c_checkers = ["oclint"]
+let g:syntastic_css_checkers = ["csslint"]
+let g:syntastic_go_checkers = ["gofmt", "govet", "go"]
+let g:syntastic_javascript_checkers = ["eslint"]
+let g:syntastic_php_checkers = ["php", "phpcs"]
+let g:syntastic_ruby_checkers = ["rubocop"]
+let g:syntastic_slim_checkers = ["slim_lint", "slimrb"]
+
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
 let g:syntastic_python_pylint_post_args = '--msg-template="{path}:{line}:{column}:{C}: [{symbol} {msg_id}] {msg}"'
 
@@ -212,6 +222,7 @@ nmap ga <Plug>(EasyAlign)<f37>
 nnoremap <Leader>o :CtrlP<cr>
 nnoremap <Leader>pc :CtrlPClearCache<cr>
 let g:ctrlp_open_multiple_files = '1vjr'
+let g:ctrlp_custom_ignore = '\v[\/](_build|coverage|db/postgres|deps|node_modules|tmp)$'
 
 " vimux
 let g:VimuxOrientation = "h"
