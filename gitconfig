@@ -1,6 +1,7 @@
 [user]
   name = Daniel Paul Searles
   email = daniel.paul.searles@gmail.com
+  signingkey = 64EAA50B
 [color]
   ui = true
 [core]
@@ -10,17 +11,20 @@
 [pager]
   status = on
 [alias]
-  glog = log --graph
-  lc = log -1 --pretty=%B
-  start = reflow start
-  review = reflow review
+  c = commit -v
+  t = tag -s
   deliver = reflow deliver
+  glog = log --graph --show-signature
+  lc = log -1 --pretty=%B
+  review = reflow review
   st = diff --staged
+  start = reflow start
 [include]
   path = ~/.gitconfig.local
 [push]
   default = simple
 [commit]
+  gpgsign = true
   template = ~/.gitmessage
 [reflow]
 	git-server = GitHub
