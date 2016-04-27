@@ -111,7 +111,6 @@ paths=(
     $HOME/.composer/vendor/bin
     /usr/local/go/bin
     $GOPATH/bin
-    $HOME/Library/Android/sdk/platform-tools
 )
 
 export PATH="/usr/local/sbin"
@@ -122,6 +121,7 @@ for p in ${paths[@]}; do
 done
 
 # User specific aliases and functions
+alias la='ls -al'
 alias be='bundle exec'
 alias grep='grep --color'
 alias curlinfo='curl -w "url_effective:\t\t%{url_effective}\nhttp_code:\t\t%{http_code}\nhttp_connect:\t\t%{http_connect}\ntime_total:\t\t%{time_total}\ntime_namelookup:\t%{time_namelookup}\ntime_connect:\t\t%{time_connect}\ntime_pretransfer:\t%{time_pretransfer}\ntime_redirect:\t\t%{time_redirect}\ntime_starttransfer:\t%{time_starttransfer}\nsize_download:\t\t%{size_download}\nsize_upload:\t\t%{size_upload}\nsize_header:\t\t%{size_header}\nsize_request:\t\t%{size_request}\nspeed_download:\t\t%{speed_download}\nspeed_upload:\t\t%{speed_upload}\ncontent_type:\t\t%{content_type}\nnum_connects:\t\t%{num_connects}\nnum_redirects:\t\t%{num_redirects}\nftp_entry_path:\t\t%{ftp_entry_path}\n" -o /dev/null -s'
@@ -130,6 +130,7 @@ export EDITOR="vim"
 export LANG=en_US.UTF-8
 export LC_ALL=$LANG
 export HISTCONTROL='ignoreboth:erasedups'
+export PGUSER=postgres
 
 # Mac Aliases
 if [[ "$(uname -s)" == "Darwin" ]]; then
@@ -169,3 +170,13 @@ eval "$(direnv hook bash)"
 
 # autocompletions
 source /usr/local/etc/bash_completion.d/git-completion.bash
+
+# docker
+if [ -n "$(docker-machine ls | grep 'dev .*Running')" ]; then
+  eval $(docker-machine env dev)
+  export DOCKER_MACHINE_IP=$(docker-machine ip dev)
+fi
+
+# nvm
+export NVM_DIR="/Users/daniel/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
