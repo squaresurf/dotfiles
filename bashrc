@@ -105,8 +105,6 @@ paths=(
     /usr/local/bin
     $HOME/Library/Haskell/bin
     $HOME/bin
-    $HOME/bin/terraform
-    $HOME/bin/packer
     $OCLINT_HOME/bin
     $HOME/.composer/vendor/bin
     /usr/local/go/bin
@@ -153,7 +151,7 @@ alias unhitch='hitch -u'
 chruby="/usr/local/share/chruby"
 if [ -d $chruby ]; then
     source $chruby/chruby.sh
-    chruby '2.3.0'
+    chruby '2.3.1'
 fi
 
 # nova
