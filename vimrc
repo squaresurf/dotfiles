@@ -194,6 +194,8 @@ let g:Tlist_Use_Right_Window = 1
 
 " set custom file extension syntax
 autocmd BufNewFile,BufRead Capfile,Gemfile,Berksfile,Vagrantfile,Guardfile setlocal filetype=ruby
+autocmd BufNewFile,BufRead .eslintrc setlocal filetype=json
+autocmd BufNewFile,BufRead .envrc setlocal filetype=sh
 
 " open php documentation
 autocmd FileType php setlocal keywordprg=~/bin/phpdoc.sh
