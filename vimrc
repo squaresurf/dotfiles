@@ -27,6 +27,8 @@ Plugin 'fatih/vim-go'
 Plugin 'glench/vim-jinja2-syntax'
 Plugin 'groenewege/vim-less'
 Plugin 'hail2u/vim-css3-syntax'
+Plugin 'hhsnopek/vim-sugarss'
+Plugin 'jalvesaq/Nvim-R'
 Plugin 'jgdavey/vim-turbux'
 Plugin 'jlanzarotta/bufexplorer'
 Plugin 'junegunn/vim-easy-align'
@@ -35,8 +37,8 @@ Plugin 'markcornick/vim-terraform.git'
 Plugin 'mxw/vim-jsx'
 Plugin 'pangloss/vim-javascript'
 Plugin 'rizzatti/dash.vim'
-Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
+Plugin 'slashmili/alchemist.vim'
 Plugin 'slim-template/vim-slim'
 Plugin 'sunaku/vim-ruby-minitest'
 Plugin 'syngan/vim-vimlint'
@@ -54,6 +56,7 @@ Plugin 'tpope/vim-rsi'
 Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-vinegar'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'ynkdir/vim-vimlparser'
@@ -155,13 +158,17 @@ set hidden
 set number
 set relativenumber
 
+" Set netrw to allow line numbers
+let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
+
+" cursor settings
+set cursorcolumn
+set cursorline
+
 " bufexplorer settings
 let g:bufExplorerShowRelativePath = 1
 let g:bufExplorerSortBy = "fullpath"
 let g:bufExplorerSplitOutPathName = 0
-
-" nerdtree settings
-let g:NERDTreeShowLineNumbers=1
 
 " " latext settings
 " " important: grep will sometimes skip displaying the file name if you
@@ -223,12 +230,13 @@ nmap ga <Plug>(EasyAlign)<f37>
 " ctrlp
 nnoremap <Leader>o :CtrlP<cr>
 nnoremap <Leader>pc :CtrlPClearCache<cr>
+let g:ctrlp_show_hidden = 1
 let g:ctrlp_open_multiple_files = '1vjr'
-let g:ctrlp_custom_ignore = '\v[\/](_build|coverage|db/postgres|deps|node_modules|tmp)$'
+let g:ctrlp_custom_ignore = '\v[\/](_build|coverage|db/postgres|deps|node_modules|tmp|.git|.direnv)$'
 
 " vimux
 let g:VimuxOrientation = "h"
 
 " turbux
 let g:turbux_command_rspec = "rubyspec"
-let g:turbux_command_test_unit = "bundle exec ruby -Itest"
+let g:turbux_command_test_unit = "rubyunit"

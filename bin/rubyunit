@@ -1,0 +1,13 @@
+#!/bin/bash
+
+BLUE='\e[0;34m'
+RESET='\e[0;0m'
+
+if [[ -f Gemfile ]]; then
+  cmd='bundle exec ruby -Itest'
+else
+  cmd='ruby -Itest'
+fi
+
+printf "${BLUE}$cmd${RESET}\n"
+$cmd $@
