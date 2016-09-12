@@ -87,6 +87,9 @@ PROMPT_COMMAND="date_prompt; git_prompt; $PROMPT_COMMAND"
 # Fix backspace
 stty erase '^?'
 
+# Fix gpg-agent
+export GPG_TTY=`tty`
+
 # Go Lang
 export GOPATH="$HOME/code/go"
 
@@ -136,24 +139,6 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
   alias stat='stat -x'
 fi
 
-# Add the following to your ~/.bashrc or ~/.zshrc
-#
-# Alternatively, copy/symlink this file and source in your shell.  See `hitch --setup-path`.
-
-# Hitch
-hitch() {
-  command hitch "$@"
-  if [[ -s "$HOME/.hitch_export_authors" ]] ; then source "$HOME/.hitch_export_authors" ; fi
-}
-alias unhitch='hitch -u'
-
-# chruby
-chruby="/usr/local/share/chruby"
-if [ -d $chruby ]; then
-    source $chruby/chruby.sh
-    chruby '2.3.1'
-fi
-
 # nova
 nova="$HOME/.nova/environment.bash"
 if [ -f $nova ]; then
@@ -167,14 +152,6 @@ eval "$(~/code/spartan/hop/bin/hop init -)"
 eval "$(direnv hook bash)"
 
 # autocompletions
-source /usr/local/etc/bash_completion.d/git-completion.bash
-
-# docker
-if [ -n "$(docker-machine ls | grep 'dev .*Running')" ]; then
-  eval $(docker-machine env dev)
-  export DOCKER_MACHINE_IP=$(docker-machine ip dev)
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
 fi
-
-# nvm
-export NVM_DIR="/Users/daniel/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
