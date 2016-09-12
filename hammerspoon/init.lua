@@ -163,12 +163,52 @@ hs.hotkey.bind({"ctrl", "alt"}, "Right", function()
   win:setFrame(f)
 end)
 
-hs.hotkey.bind({"ctrl", "alt"}, "j", function()
+-- g right
+hs.hotkey.bind({"ctrl", "alt"}, "g", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+
+  local w = f.w / 2
+  f.x = f.x + w
+  f.w = w
+  win:setFrame(f)
+end)
+
+-- d left
+hs.hotkey.bind({"ctrl", "alt"}, "d", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+
+  f.w = f.w / 2
+  win:setFrame(f)
+end)
+
+-- r up
+hs.hotkey.bind({"ctrl", "alt"}, "r", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+
+  f.h = f.h / 2
+  win:setFrame(f)
+end)
+
+-- f down
+hs.hotkey.bind({"ctrl", "alt"}, "f", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+
+  local h = f.h / 2
+  f.y = f.y + h
+  f.h = h
+  win:setFrame(f)
+end)
+
+hs.hotkey.bind({"ctrl", "alt"}, "k", function()
   local win = hs.window.focusedWindow()
   win:moveToScreen(win:screen():next())
 end)
 
-hs.hotkey.bind({"ctrl", "alt"}, "k", function()
+hs.hotkey.bind({"ctrl", "alt"}, "j", function()
   local win = hs.window.focusedWindow()
   win:moveToScreen(win:screen():previous())
 end)
