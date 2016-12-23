@@ -87,6 +87,9 @@ PROMPT_COMMAND="date_prompt; git_prompt; $PROMPT_COMMAND"
 # Fix backspace
 stty erase '^?'
 
+# Fix tmux <c-h>
+export TERMINFO="$HOME/.terminfo"
+
 # Fix gpg-agent
 export GPG_TTY=`tty`
 
