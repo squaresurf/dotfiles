@@ -136,6 +136,12 @@ export LC_ALL=$LANG
 export HISTCONTROL='ignoreboth:erasedups'
 export PGUSER=postgres
 
+# Add ssh key
+main_key=$HOME/.ssh/id_rsa
+if [[ -z "$(ssh-add -l | grep $main_key)" ]]; then
+  ssh-add $main_key
+fi
+
 # Mac Aliases
 if [[ "$(uname -s)" == "Darwin" ]]; then
   alias ls='ls -G'
