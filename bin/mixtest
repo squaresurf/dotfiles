@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+file=$1
+if [[ $file == apps/* ]]; then
+  paths=( $(echo $file | sed 's~\(apps/[^/]*\)/\(.*\)~\1 \2~g') )
+  cd ${paths[0]}
+  file=${paths[1]}
+fi
+
+mix test $file

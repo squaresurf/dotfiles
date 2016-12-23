@@ -24,6 +24,7 @@ Plugin 'elixir-lang/vim-elixir'
 Plugin 'elzr/vim-json.git'
 Plugin 'evanmiller/nginx-vim-syntax'
 Plugin 'fatih/vim-go'
+Plugin 'flowtype/vim-flow'
 Plugin 'glench/vim-jinja2-syntax'
 Plugin 'groenewege/vim-less'
 Plugin 'hail2u/vim-css3-syntax'
@@ -35,9 +36,11 @@ Plugin 'junegunn/vim-easy-align'
 Plugin 'kien/ctrlp.vim'
 Plugin 'markcornick/vim-terraform.git'
 Plugin 'mxw/vim-jsx'
+Plugin 'nazo/pt.vim'
+Plugin 'neomake/neomake'
 Plugin 'pangloss/vim-javascript'
-Plugin 'rizzatti/dash.vim'
-Plugin 'scrooloose/syntastic'
+" Plugin 'rizzatti/dash.vim'
+" Plugin 'scrooloose/syntastic'
 Plugin 'slashmili/alchemist.vim'
 Plugin 'slim-template/vim-slim'
 Plugin 'sunaku/vim-ruby-minitest'
@@ -91,20 +94,20 @@ let g:mapleader = "\<space>"
 " save a file
 nnoremap <Leader>w :w<cr>
 
-" check a file
-nnoremap <Leader>s :SyntasticCheck<cr>
-
 " see errors
-nnoremap <Leader>r :Errors<cr>
+nnoremap <Leader>s :Pt
+
+" rubocop the errors
+nnoremap <Leader>f :!rubocop -a %<cr>
+
+" run neomake
+nnoremap <Leader>r :Neomake<cr>
 
 " open BufExplorer
 nnoremap <Leader>e :BufExplorer<cr>
 
 " turn off higlight
 nnoremap <Leader>n :noh<cr>
-
-" search dash for documentation.
-nnoremap <Leader>d :Dash<cr>
 
 " force unix lineendings
 nnoremap <Leader>u :e ++ff=unix<cr>
@@ -130,9 +133,10 @@ set t_Co=256
 set t_ut=
 
 " Quick buffer changes
-nnoremap <Leader>j :bp<cr>
-nnoremap <Leader>k :bn<cr>
 nnoremap <Leader>l :b#<cr>
+nnoremap <Leader>k :bn<cr>
+nnoremap <Leader>j :bp<cr>
+
 
 syntax on
 colorscheme Tomorrow-Night
@@ -207,19 +211,58 @@ autocmd BufNewFile,BufRead .envrc setlocal filetype=sh
 " open php documentation
 autocmd FileType php setlocal keywordprg=~/bin/phpdoc.sh
 
-" syntastic
+autocmd! BufWritePost,BufEnter * Neomake
+" function! neomake#makers#ft#elixir#EnabledMakers()
+"     return ['elixir', 'credo']
+" endfunction
+"
+" Configure a nice credo setup, courtesy https://github.com/neomake/neomake/pull/300
+let g:neomake_elixir_enabled_makers = ['mix', 'mycredo', 'elixir']
+function! NeomakeCredoErrorType(entry)
+  if a:entry.type ==# 'F'      " Refactoring opportunities
+    let l:type = 'W'
+  elseif a:entry.type ==# 'D'  " Software design suggestions
+    let l:type = 'I'
+  elseif a:entry.type ==# 'W'  " Warnings
+    let l:type = 'W'
+  elseif a:entry.type ==# 'R'  " Readability suggestions
+    let l:type = 'I'
+  elseif a:entry.type ==# 'C'  " Convention violation
+    let l:type = 'W'
+  else
+    let l:type = 'M'           " Everything else is a message
+  endif
+  let a:entry.type = l:type
+endfunction
 
-let g:syntastic_c_checkers = ["oclint"]
-let g:syntastic_css_checkers = ["csslint"]
-let g:syntastic_go_checkers = ["gofmt", "govet", "go"]
-let g:syntastic_javascript_checkers = ["eslint"]
-let g:syntastic_php_checkers = ["php", "phpcs"]
-let g:syntastic_ruby_checkers = ["rubocop"]
-let g:syntastic_slim_checkers = ["slim_lint", "slimrb"]
+let g:neomake_elixir_mycredo_maker = {
+      \ 'exe': 'mix',
+      \ 'args': ['credo', 'list', '%:p', '--format=oneline'],
+      \ 'errorformat': '[%t] %. %f:%l:%c %m,[%t] %. %f:%l %m',
+      \ 'postprocess': function('NeomakeCredoErrorType')
+      \ }
 
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+function! neomake#makers#ft#ruby#EnabledMakers()
+    return ['mri', 'rubocop', 'reek']
+endfunction
 
-let g:syntastic_python_pylint_post_args = '--msg-template="{path}:{line}:{column}:{C}: [{symbol} {msg_id}] {msg}"'
+" " Old Syntastic Config
+" " syntastic
+
+" " 63 will log all debug messages
+" " let g:syntastic_debug = 63
+" let g:syntastic_c_checkers = ["oclint"]
+" let g:syntastic_css_checkers = ["csslint"]
+" let g:syntastic_go_checkers = ["gofmt", "govet", "go"]
+" let g:syntastic_javascript_checkers = ["eslint"]
+" let g:syntastic_php_checkers = ["php", "phpcs"]
+" let g:syntastic_ruby_checkers = ["rubocop"]
+" let g:syntastic_slim_checkers = ["slim_lint", "slimrb"]
+" let g:syntastic_elixir_checkers = ["credo"]
+
+" let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+" let g:syntastic_python_pylint_post_args = '--msg-template="{path}:{line}:{column}:{C}: [{symbol} {msg_id}] {msg}"'
 
 " start interactive easyalign in visual mode (e.g. vip<enter>)
 vmap <Enter> <Plug>(EasyAlign)
@@ -227,12 +270,22 @@ vmap <Enter> <Plug>(EasyAlign)
 " start interactive easyalign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)<f37>
 
+" mxw/vim-jsx
+let g:jsx_ext_required = 0
+
 " ctrlp
 nnoremap <Leader>o :CtrlP<cr>
 nnoremap <Leader>pc :CtrlPClearCache<cr>
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_open_multiple_files = '1vjr'
-let g:ctrlp_custom_ignore = '\v[\/](_build|coverage|db/postgres|deps|node_modules|tmp|.git|.direnv)$'
+let g:ctrlp_custom_ignore = '\v[\/](_build|coverage|db/postgres|deps|node_modules|tmp|.git|.direnv|.vagrant)$'
+
+" tell ctrlp to use ripgrep
+let g:ackprg = 'rg --vimgrep --no-heading'
+if executable("rg")
+    set grepprg=rg\ --vimgrep\ --no-heading
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
 
 " vimux
 let g:VimuxOrientation = "h"
@@ -240,3 +293,4 @@ let g:VimuxOrientation = "h"
 " turbux
 let g:turbux_command_rspec = "rubyspec"
 let g:turbux_command_test_unit = "rubyunit"
+let g:turbux_command_elixir_test = "time mixtest"
