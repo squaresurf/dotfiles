@@ -164,3 +164,8 @@ eval "$(direnv hook bash)"
 if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
+
+# stack autocompletion
+if [ -n "$(which stack)" ]; then
+  eval "$(stack --bash-completion-script stack)"
+fi
