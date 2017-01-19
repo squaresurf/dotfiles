@@ -5,3 +5,6 @@
 # Vim files.
 .*.sw?
 Session.vim
+
+# Mac files
+.DS_Store
