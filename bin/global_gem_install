@@ -2,7 +2,6 @@
 
 gem install \
   bundler \
-  rails \
   rake \
   rubocop \
   slim_lint
