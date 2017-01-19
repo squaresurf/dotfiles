@@ -80,9 +80,16 @@ date_prompt() {
   printf "$MAGENTA$(date '+%Y-%m-%d %H:%M:%S')$RESET "
 }
 
+exit_status_prompt() {
+  last_status=$?
+  if [[ $last_status > 0 ]]; then
+    printf "${RED}$last_status${RESET} "
+  fi
+}
+
 # My Prompt
 PS1="\[$BLUE\]\u\[$RESET\]@\h \[$BLUE\]\w \n\[$GREEN\]\$ \[$RESET\]"
-PROMPT_COMMAND="date_prompt; git_prompt; $PROMPT_COMMAND"
+PROMPT_COMMAND="exit_status_prompt; date_prompt; git_prompt;"
 
 # Fix backspace
 stty erase '^?'
