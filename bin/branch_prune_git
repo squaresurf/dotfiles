@@ -1,11 +1,29 @@
 #!/bin/bash
-if [[ -z "$1" || -z "$2" ]]; then
-    echo "You must pass the main branch and the branch to delete as arguments to this script.";
-    exit 1
+
+# stop on any failure
+set -e
+
+RESET='\e[0;0m'
+BLUE='\e[0;34m'
+
+log() {
+  printf "$BLUE$1$RESET\n"
+}
+
+if [[ -z "$1" ]]; then
+  main_branch='master'
+else
+  main_branch=$2
 fi;
 
-main_branch=$1
-delete_branch=$2
+delete_branch=$(git name-rev --name-only HEAD)
+if [[ -z "$delete_branch" ]]; then
+  echo "We couldn't figure out the branch to delete."
+  exit 1
+fi
+
+log "main_branch: $main_branch"
+log "delete_branch: $delete_branch"
 
 git fetch -p
 git checkout $main_branch
