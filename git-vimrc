@@ -5,3 +5,4 @@ source ~/.vimrc
 
 set tw=72
 colorscheme default
+set nocursorcolumn
