@@ -122,6 +122,8 @@ paths=(
     $HOME/.composer/vendor/bin
     /usr/local/go/bin
     $GOPATH/bin
+    /usr/local/opt/openssl/bin
+    $HOME/.local/bin
 )
 
 export PATH="/usr/local/sbin"
