@@ -9,6 +9,8 @@ svg = Nokogiri::XML(STDIN)
 SPECIAL_NAMES = %w(text)
 SPECIAL_ATTRS = %w(in type)
 
+puts "  -- BEWARE OF DEFS IDS!!!"
+
 def namespace_name(ns, name)
   return name unless ns&.prefix
   name[0] = name[0].upcase
