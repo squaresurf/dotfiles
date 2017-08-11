@@ -106,50 +106,31 @@ export GOPATH="$HOME/code/go"
 # C
 export OCLINT_HOME="$HOME/bin/oclint-0.7-x86_64-apple-darwin-10"
 
-# This is in reverse order.
-paths=(
-    /usr/texbin
-    /opt/X11/bin
-    /sbin
-    /usr/sbin
-    /bin
-    /usr/bin
-    /usr/local/sbin
-    /usr/local/bin
-    $HOME/Library/Haskell/bin
-    $HOME/bin
-    $OCLINT_HOME/bin
-    $HOME/.composer/vendor/bin
-    /usr/local/go/bin
-    $GOPATH/bin
-    /usr/local/opt/openssl/bin
-    $HOME/.local/bin
-)
-
-export PATH="/usr/local/sbin"
-for p in ${paths[@]}; do
-    if [[ -d $p ]]; then
-        export PATH="$p:$PATH";
-    fi
-done
-
 # User specific aliases and functions
 alias la='ls -al'
 alias be='bundle exec'
 alias grep='grep --color'
 alias curlinfo='curl -w "url_effective:\t\t%{url_effective}\nhttp_code:\t\t%{http_code}\nhttp_connect:\t\t%{http_connect}\ntime_total:\t\t%{time_total}\ntime_namelookup:\t%{time_namelookup}\ntime_connect:\t\t%{time_connect}\ntime_pretransfer:\t%{time_pretransfer}\ntime_redirect:\t\t%{time_redirect}\ntime_starttransfer:\t%{time_starttransfer}\nsize_download:\t\t%{size_download}\nsize_upload:\t\t%{size_upload}\nsize_header:\t\t%{size_header}\nsize_request:\t\t%{size_request}\nspeed_download:\t\t%{speed_download}\nspeed_upload:\t\t%{speed_upload}\ncontent_type:\t\t%{content_type}\nnum_connects:\t\t%{num_connects}\nnum_redirects:\t\t%{num_redirects}\nftp_entry_path:\t\t%{ftp_entry_path}\n" -o /dev/null -s'
 
-export EDITOR="vim"
+export EDITOR="nvim"
 export LANG=en_US.UTF-8
 export LC_ALL=$LANG
 export HISTCONTROL='ignoreboth:erasedups'
+
 export PGUSER=postgres
 
-# Add ssh key
-main_key=$HOME/.ssh/id_rsa
-if [[ -z "$(ssh-add -l | grep $main_key)" ]]; then
-  ssh-add $main_key
-fi
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+# Add ssh keys
+keys=(
+  $HOME/.ssh/id_rsa
+)
+
+for key in ${keys[@]}; do
+  if [[ -f $key && -z "$(ssh-add -l | grep $key)" ]]; then
+    ssh-add $key
+  fi
+done
 
 # Mac Aliases
 if [[ "$(uname -s)" == "Darwin" ]]; then
@@ -164,7 +145,7 @@ if [ -f $nova ]; then
 fi
 
 # spartan hop
-eval "$(~/code/spartan/hop/bin/hop init -)"
+eval "$(~/code/very/hop/bin/hop init -)"
 
 # direnv
 eval "$(direnv hook bash)"
@@ -178,3 +159,33 @@ fi
 if [ -n "$(which stack)" ]; then
   eval "$(stack --bash-completion-script stack)"
 fi
+
+haskell_local_bin=$(stack path --local-bin)
+
+# This is in reverse order.
+paths=(
+    /opt/X11/bin
+    /sbin
+    /usr/sbin
+    /bin
+    /usr/bin
+    /usr/local/sbin
+    /usr/local/bin
+    $HOME/Library/Haskell/bin
+    $OCLINT_HOME/bin
+    /usr/local/go/bin
+    $GOPATH/bin
+    /usr/local/opt/openssl/bin
+    /Library/TeX/texbin
+    $haskell_local_bin
+    $HOME/bin
+)
+
+export PATH="/usr/local/sbin"
+for p in ${paths[@]}; do
+    if [[ -d $p ]]; then
+        export PATH="$p:$PATH";
+    fi
+done
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
