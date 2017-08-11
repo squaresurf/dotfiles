@@ -7,7 +7,7 @@
 [core]
   excludesfile = ~/.gitignore
   pager = less -FXR
-  editor = vim -u ~/.git-vimrc
+  editor = nvim
 [pager]
   status = on
 [alias]
@@ -32,3 +32,8 @@
 [github]
 	site = https://github.com
 	endpoint = https://api.github.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
