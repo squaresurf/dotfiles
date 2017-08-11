@@ -13,7 +13,7 @@ log() {
 if [[ -z "$1" ]]; then
   main_branch='master'
 else
-  main_branch=$2
+  main_branch=$1
 fi;
 
 delete_branch=$(git name-rev --name-only HEAD)
