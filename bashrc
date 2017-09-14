@@ -119,7 +119,12 @@ export HISTCONTROL='ignoreboth:erasedups'
 
 export PGUSER=postgres
 
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow \
+  --glob "!.git/*" \
+  --glob "!_build/*" \
+  --glob "!deps/*" \
+  --glob "!node_modules/*" \
+'
 
 # Add ssh keys
 keys=(
