@@ -43,10 +43,10 @@ call plug#end()
 scriptencoding utf8
 
 syntax on
-colorscheme Tomorrow-Night
+"colorscheme Tomorrow-Night
+colorscheme default
 
 set backspace=indent,eol,start
-set cursorcolumn
 set cursorline
 set dir=~/.vim-tmp//
 set expandtab
