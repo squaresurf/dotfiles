@@ -6,14 +6,15 @@ Plug 'elmcast/elm-vim'
 Plug 'jalvesaq/Nvim-R'
 
 Plug 'benmills/vimux'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jgdavey/vim-turbux'
+Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'lervag/vimtex'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'mattn/emmet-vim'
 Plug 'rizzatti/dash.vim'
 Plug 'sbdchd/neoformat'
@@ -101,7 +102,17 @@ augroup filetypes
   autocmd BufNewFile,BufRead Capfile,Gemfile,Berksfile,Vagrantfile,Guardfile setlocal filetype=ruby
   autocmd BufNewFile,BufRead .eslintrc setlocal filetype=json
   autocmd BufNewFile,BufRead .envrc setlocal filetype=sh
+  autocmd BufNewFile,BufRead *.m setlocal filetype=octave
 augroup END
+
+augroup commentary
+  autocmd FileType octave setlocal commentstring=%\ %s
+augroup END
+
+let g:bufExplorerShowRelativePath = 1
+let g:bufExplorerSortBy = "fullpath"
+let g:bufExplorerSplitOutPathName = 0
+nnoremap <Leader>e :BufExplorer<cr>
 
 let g:polyglot_disabled = ['elm', 'r']
 
@@ -123,11 +134,7 @@ let g:ragtag_global_maps = 1
 
 " FZF
 nnoremap <Leader>o :Files<cr>
-nnoremap <Leader>e :Buffers<cr>
 nnoremap <Leader>s :Find
 
 command! -bang -nargs=* Find call fzf#vim#grep(
       \ 'rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
-
-command! Buffers call fzf#run(fzf#wrap(
-    \ {'source': sort(filter(map(range(1, bufnr('$')), 'bufname(v:val)'), 'buflisted(v:val)'))}))
