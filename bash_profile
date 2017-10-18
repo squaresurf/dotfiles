@@ -18,6 +18,4 @@ if [ -d ~/.asdf ]; then
   source $HOME/.asdf/completions/asdf.bash
 fi
 
-eval "$(pyenv init -)"
-
 export PATH="$HOME/.cargo/bin:$PATH"

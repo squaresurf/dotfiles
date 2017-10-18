@@ -1,3 +1,8 @@
+-- Helper Functions
+function sleep(n)
+  os.execute("sleep " .. tonumber(n))
+end
+
 -- Reload config on write.
 function reloadConfig(files)
   doReload = false
@@ -14,18 +19,21 @@ hs.pathwatcher.new(os.getenv("HOME") .. "/.dotfiles/hammerspoon/", reloadConfig)
 hs.alert.show("Config loaded")
 
 -- Music Hotkeys
+function displayCurrentTrack(player)
+  sleep(1)
+  if player.getCurrentTrack() then
+    player.displayCurrentTrack()
+  end
+end
+
 hs.hotkey.bind({"ctrl"}, "f7", function ()
   if hs.appfinder.appFromName("iTunes") then
     hs.itunes.previous()
-    if hs.itunes.getCurrentTrack() then
-      hs.itunes.displayCurrentTrack()
-    end
-    elseif hs.appfinder.appFromName("Spotify") then
-      hs.spotify.previous()
-      if hs.spotify.getCurrentTrack() then
-        hs.spotify.displayCurrentTrack()
-      end
-    end
+    displayCurrentTrack(hs.itunes)
+  elseif hs.appfinder.appFromName("Spotify") then
+    hs.spotify.previous()
+    displayCurrentTrack(hs.spotify)
+  end
 end)
 
 paused = false
@@ -37,32 +45,28 @@ hs.hotkey.bind({"ctrl"}, "f8", function ()
     else
       paused = false
       hs.itunes.play()
-      hs.itunes.displayCurrentTrack()
+      displayCurrentTrack(hs.itunes)
     end
-    elseif hs.appfinder.appFromName("Spotify") then
-      if not paused then
-        paused = true
-        hs.spotify.pause()
-      else
-        paused = false
-        hs.spotify.play()
-        hs.spotify.displayCurrentTrack()
-      end
+  elseif hs.appfinder.appFromName("Spotify") then
+    if not paused then
+      paused = true
+      hs.spotify.pause()
+    else
+      paused = false
+      hs.spotify.play()
+      displayCurrentTrack(hs.spotify)
     end
+  end
 end)
 
 hs.hotkey.bind({"ctrl"}, "f9", function ()
   if hs.appfinder.appFromName("iTunes") then
     hs.itunes.next()
-    if hs.itunes.getCurrentTrack() then
-      hs.itunes.displayCurrentTrack()
-    end
-    elseif hs.appfinder.appFromName("Spotify") then
-      hs.spotify.next()
-      if hs.spotify.getCurrentTrack() then
-        hs.spotify.displayCurrentTrack()
-      end
-    end
+    displayCurrentTrack(hs.itunes)
+  elseif hs.appfinder.appFromName("Spotify") then
+    hs.spotify.next()
+    displayCurrentTrack(hs.spotify)
+  end
 end)
 
 hs.hotkey.bind({"ctrl"}, "f10", function ()

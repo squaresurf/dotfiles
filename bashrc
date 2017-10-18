@@ -119,12 +119,17 @@ export HISTCONTROL='ignoreboth:erasedups'
 
 export PGUSER=postgres
 
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow \
+export RG_IGNORE='\
   --glob "!.git/*" \
   --glob "!_build/*" \
+  --glob "!client/node_modules/*" \
   --glob "!deps/*" \
+  --glob "!dist/*" \
+  --glob "!elm-stuff/*" \
   --glob "!node_modules/*" \
+  --glob "!tmp/*" \
 '
+export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow $RG_IGNORE"
 
 # Add ssh keys
 keys=(
@@ -169,13 +174,7 @@ haskell_local_bin=$(stack path --local-bin)
 
 # This is in reverse order.
 paths=(
-    /opt/X11/bin
-    /sbin
-    /usr/sbin
-    /bin
-    /usr/bin
     /usr/local/sbin
-    /usr/local/bin
     $HOME/Library/Haskell/bin
     $OCLINT_HOME/bin
     /usr/local/go/bin
@@ -186,7 +185,6 @@ paths=(
     $HOME/bin
 )
 
-export PATH="/usr/local/sbin"
 for p in ${paths[@]}; do
     if [[ -d $p ]]; then
         export PATH="$p:$PATH";
