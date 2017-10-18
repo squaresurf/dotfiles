@@ -1,0 +1,52 @@
+#!/bin/bash
+
+set -e
+
+BLUE='\e[0;34m'
+RESET='\e[0;0m'
+
+log() {
+  printf "$BLUE$1$RESET\n"
+}
+
+git_reset() {
+  log "resetting $1 clone"
+  git checkout master
+  git reset --hard HEAD
+  git pull
+  git clean -xdf
+}
+
+mkdir -p ~/build/elixir
+cd ~/build/elixir/
+
+# bunt
+
+if [[ ! -d bunt ]]; then
+  log "cloning bunt"
+  git clone git@github.com:rrrene/bunt.git
+fi
+
+cd bunt
+git_reset 'bunt'
+
+
+mix archive.build
+mix archive.install
+
+cd -
+
+# credo
+
+if [[ ! -d credo ]]; then
+  log 'cloning credo'
+  git clone git@github.com:rrrene/credo.git
+fi
+
+cd credo
+
+git_reset 'credo'
+
+mix deps.get
+mix archive.build
+mix archive.install
