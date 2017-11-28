@@ -18,6 +18,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'mattn/emmet-vim'
 Plug 'rizzatti/dash.vim'
 Plug 'sbdchd/neoformat'
+Plug 'scrooloose/nerdtree'
 Plug 'slashmili/alchemist.vim'
 Plug 'syngan/vim-vimlint'
 Plug 'tmux-plugins/vim-tmux'
@@ -34,7 +35,6 @@ Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-vinegar'
 Plug 'w0rp/ale'
 Plug 'ynkdir/vim-vimlparser'
 
@@ -83,6 +83,8 @@ nnoremap <Leader>n :noh<cr>
 nnoremap <Leader>d :Dash<cr>
 nnoremap <Leader>h :ElmShowDocs<cr>
 nnoremap <Leader>H :ElmBrowseDocs<cr>
+nnoremap <Leader>z za
+nnoremap <Leader>a :ALENext<cr>
 
 " copy and paste with the system clipboard
 vmap <Leader>y "+y
@@ -92,11 +94,9 @@ nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
 
-" stop that stupid window from popping up.
-map q: :q
-
-" Set netrw to allow line numbers
-let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
+" nerdtree settings
+nnoremap - :NERDTree<cr>
+let g:NERDTreeShowLineNumbers=1
 
 augroup filetypes
   autocmd BufNewFile,BufRead Capfile,Gemfile,Berksfile,Vagrantfile,Guardfile setlocal filetype=ruby
