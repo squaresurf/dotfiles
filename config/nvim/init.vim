@@ -95,7 +95,7 @@ vmap <Leader>p "+p
 vmap <Leader>P "+P
 
 " nerdtree settings
-nnoremap - :NERDTree<cr>
+nnoremap - :Explore<cr>
 let g:NERDTreeShowLineNumbers=1
 
 augroup filetypes
