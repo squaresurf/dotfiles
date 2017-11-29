@@ -117,6 +117,8 @@ export LANG=en_US.UTF-8
 export LC_ALL=$LANG
 export HISTCONTROL='ignoreboth:erasedups'
 
+export ERL_AFLAGS="-kernel shell_history enabled"
+
 export PGUSER=postgres
 
 export RG_IGNORE='\
@@ -154,7 +156,11 @@ if [ -f $nova ]; then
     source $nova
 fi
 
-# spartan hop
+# fasd
+eval "$(fasd --init auto)"
+alias v='f -e nvim'
+
+# very hop
 eval "$(~/code/very/hop/bin/hop init -)"
 
 # direnv
