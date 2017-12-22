@@ -8,3 +8,6 @@ Session.vim
 
 # Mac files
 .DS_Store
+
+# Elixir Scripts
+daniel_ignore*.exs
