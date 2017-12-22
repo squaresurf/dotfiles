@@ -5,38 +5,29 @@ Plug 'sheerun/vim-polyglot'
 Plug 'elmcast/elm-vim'
 Plug 'jalvesaq/Nvim-R'
 
-Plug 'benmills/vimux'
-Plug 'chriskempson/vim-tomorrow-theme'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'jgdavey/vim-turbux'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'justinmk/vim-dirvish'
 Plug 'lervag/vimtex'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'mattn/emmet-vim'
 Plug 'rizzatti/dash.vim'
 Plug 'sbdchd/neoformat'
-Plug 'scrooloose/nerdtree'
 Plug 'slashmili/alchemist.vim'
-Plug 'syngan/vim-vimlint'
-Plug 'tmux-plugins/vim-tmux'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
-Plug 'tpope/vim-markdown'
-Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-ragtag'
-Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-rsi'
-Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'w0rp/ale'
-Plug 'ynkdir/vim-vimlparser'
 
 " Initialize plugin system
 call plug#end()
@@ -68,6 +59,10 @@ set t_ut=
 set wildmenu
 set wildmode=longest,list,full
 
+" Tell NeoVim to not try to load python
+let g:loaded_python_provider = 1
+let g:loaded_python3_provider = 1
+
 " set leader to space
 let g:mapleader = "\<space>"
 
@@ -84,7 +79,6 @@ nnoremap <Leader>d :Dash<cr>
 nnoremap <Leader>h :ElmShowDocs<cr>
 nnoremap <Leader>H :ElmBrowseDocs<cr>
 nnoremap <Leader>z za
-nnoremap <Leader>a :ALENext<cr>
 
 " copy and paste with the system clipboard
 vmap <Leader>y "+y
@@ -93,10 +87,6 @@ nmap <Leader>p "+p
 nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
-
-" nerdtree settings
-nnoremap - :Explore<cr>
-let g:NERDTreeShowLineNumbers=1
 
 augroup filetypes
   autocmd BufNewFile,BufRead Capfile,Gemfile,Berksfile,Vagrantfile,Guardfile setlocal filetype=ruby
@@ -124,9 +114,13 @@ let g:turbux_command_rspec = "rubyspec"
 let g:turbux_command_test_unit = "rubyunit"
 let g:turbux_command_elixir_test = "time mixtest"
 
+let g:ale_cache_executable_check_failures = 1
+let g:ale_open_list = 1
+let g:ale_set_quickfix = 1
+
 augroup neoformat
   autocmd!
-  autocmd BufWritePre * Neoformat
+  autocmd BufWritePre *.elm,*.js,*.jsx Neoformat
 augroup END
 
 " RagTag
