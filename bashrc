@@ -127,6 +127,7 @@ export RG_IGNORE='\
   --glob "!client/node_modules/*" \
   --glob "!deps/*" \
   --glob "!dist/*" \
+  --glob "!doc/*" \
   --glob "!elm-stuff/*" \
   --glob "!node_modules/*" \
   --glob "!tmp/*" \
