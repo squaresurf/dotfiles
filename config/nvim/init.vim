@@ -1,8 +1,9 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'sheerun/vim-polyglot'
-
 Plug 'elmcast/elm-vim'
+Plug 'sheerun/vim-polyglot'
+let g:polyglot_disabled = ['elm', 'r']
+
 Plug 'jalvesaq/Nvim-R'
 
 Plug 'christoomey/vim-tmux-navigator'
@@ -107,8 +108,6 @@ let g:bufExplorerShowRelativePath = 1
 let g:bufExplorerSortBy = "fullpath"
 let g:bufExplorerSplitOutPathName = 0
 nnoremap <Leader>e :BufExplorer<cr>
-
-let g:polyglot_disabled = ['elm', 'r']
 
 " set statusline+=%{gutentags#statusline()}
 let g:gutentags_ctags_exclude = [
