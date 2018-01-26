@@ -151,6 +151,7 @@ command! -bang -nargs=* Find call fzf#vim#grep(
 
 
 let g:tagbar_left = 1
+let g:tagbar_autoclose = 1
 let g:tagbar_autofocus = 1
 let g:tagbar_type_elixir = {
     \ 'ctagstype' : 'elixir',
