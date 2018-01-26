@@ -109,6 +109,11 @@ augroup commentary
   autocmd FileType octave setlocal commentstring=%\ %s
 augroup END
 
+augroup neoformat
+  autocmd!
+  autocmd BufWritePre *.elm,*.js,*.jsx Neoformat
+augroup END
+
 let g:bufExplorerShowRelativePath = 1
 let g:bufExplorerSortBy = "fullpath"
 let g:bufExplorerSplitOutPathName = 0
@@ -130,18 +135,9 @@ let g:gutentags_ctags_exclude = [
 
 let g:jsx_ext_required = 0
 
-let g:turbux_command_rspec = "rubyspec"
-let g:turbux_command_test_unit = "rubyunit"
-let g:turbux_command_elixir_test = "time mixtest"
-
 let g:ale_cache_executable_check_failures = 1
 let g:ale_open_list = 1
 let g:ale_set_quickfix = 1
-
-augroup neoformat
-  autocmd!
-  autocmd BufWritePre *.elm,*.js,*.jsx Neoformat
-augroup END
 
 " RagTag
 let g:ragtag_global_maps = 1
