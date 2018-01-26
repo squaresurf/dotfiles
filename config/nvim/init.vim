@@ -13,6 +13,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-dirvish'
 Plug 'lervag/vimtex'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'rizzatti/dash.vim'
 Plug 'sbdchd/neoformat'
@@ -79,6 +80,9 @@ nnoremap <Leader>d :Dash<cr>
 nnoremap <Leader>h :ElmShowDocs<cr>
 nnoremap <Leader>H :ElmBrowseDocs<cr>
 nnoremap <Leader>z za
+nnoremap <Leader>t :TagbarToggle<cr>
+nnoremap <Leader>T :Tags<cr>
+nnoremap <Leader>B :BTags<cr>
 
 " copy and paste with the system clipboard
 vmap <Leader>y "+y
@@ -106,7 +110,19 @@ nnoremap <Leader>e :BufExplorer<cr>
 
 let g:polyglot_disabled = ['elm', 'r']
 
-let g:gutentags_cache_dir = '~/.tags_cache'
+" set statusline+=%{gutentags#statusline()}
+let g:gutentags_ctags_exclude = [
+      \ ".git/*",
+      \ "_build/*",
+      \ "client/node_modules/*",
+      \ "deps/*",
+      \ "dist/*",
+      \ "doc/*",
+      \ "elm-stuff/*",
+      \ "flow-typed/*",
+      \ "node_modules/*",
+      \ "tmp/*"
+      \ ]
 
 let g:jsx_ext_required = 0
 
@@ -132,3 +148,24 @@ nnoremap <Leader>s :Find
 
 command! -bang -nargs=* Find call fzf#vim#grep(
       \ 'rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow '.$RG_IGNORE.' --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
+
+let g:tagbar_left = 1
+let g:tagbar_autofocus = 1
+let g:tagbar_type_elixir = {
+    \ 'ctagstype' : 'elixir',
+    \ 'kinds' : [
+        \ 'f:functions',
+        \ 'functions:functions',
+        \ 'c:callbacks',
+        \ 'd:delegates',
+        \ 'e:exceptions',
+        \ 'i:implementations',
+        \ 'a:macros',
+        \ 'o:operators',
+        \ 'm:modules',
+        \ 'p:protocols',
+        \ 'r:records',
+        \ 't:tests'
+    \ ]
+\ }

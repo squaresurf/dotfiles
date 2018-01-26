@@ -6,6 +6,9 @@
 .*.sw?
 Session.vim
 
+# ctags files
+tags
+
 # Mac files
 .DS_Store
 
