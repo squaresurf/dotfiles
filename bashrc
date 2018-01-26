@@ -129,7 +129,9 @@ export RG_IGNORE='\
   --glob "!dist/*" \
   --glob "!doc/*" \
   --glob "!elm-stuff/*" \
+  --glob "!flow-typed/*" \
   --glob "!node_modules/*" \
+  --glob "!tags" \
   --glob "!tmp/*" \
 '
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow $RG_IGNORE"
