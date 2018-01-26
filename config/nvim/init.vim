@@ -11,6 +11,9 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/seoul256.vim'
 Plug 'justinmk/vim-dirvish'
 Plug 'lervag/vimtex'
 Plug 'ludovicchabant/vim-gutentags'
@@ -37,8 +40,7 @@ call plug#end()
 scriptencoding utf8
 
 syntax on
-"colorscheme Tomorrow-Night
-colorscheme default
+colorscheme seoul256
 
 set backspace=indent,eol,start
 set cursorline
@@ -98,6 +100,11 @@ augroup filetypes
   autocmd BufNewFile,BufRead .eslintrc setlocal filetype=json
   autocmd BufNewFile,BufRead .envrc setlocal filetype=sh
   autocmd BufNewFile,BufRead *.m setlocal filetype=octave
+augroup END
+
+augroup goyo
+  autocmd! User GoyoEnter Limelight
+  autocmd! User GoyoLeave Limelight!
 augroup END
 
 augroup commentary
