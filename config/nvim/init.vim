@@ -75,8 +75,6 @@ nnoremap <Leader>u :e ++ff=unix<cr>
 
 " Quick buffer changes
 nnoremap <Leader>l :b#<cr>
-nnoremap <Leader>k :bn<cr>
-nnoremap <Leader>j :bp<cr>
 
 nnoremap <Leader>n :noh<cr>
 nnoremap <Leader>d :Dash<cr>
