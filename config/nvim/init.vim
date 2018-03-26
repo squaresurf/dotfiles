@@ -20,8 +20,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'rizzatti/dash.vim'
-Plug 'sbdchd/neoformat'
-Plug 'slashmili/alchemist.vim'
+" Plug 'slashmili/alchemist.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
@@ -40,7 +39,7 @@ call plug#end()
 scriptencoding utf8
 
 syntax on
-colorscheme seoul256
+colorscheme seoul256-light
 
 set backspace=indent,eol,start
 set cursorline
@@ -76,12 +75,15 @@ nnoremap <Leader>u :e ++ff=unix<cr>
 " Quick buffer changes
 nnoremap <Leader>l :b#<cr>
 
+nnoremap <Leader>k :ALENext<cr>
+nnoremap <Leader>j :ALEPrevious<cr>
+
 nnoremap <Leader>n :noh<cr>
 nnoremap <Leader>d :Dash<cr>
 nnoremap <Leader>h :ElmShowDocs<cr>
 nnoremap <Leader>H :ElmBrowseDocs<cr>
 nnoremap <Leader>z za
-nnoremap <Leader>t :TagbarToggle<cr>
+nnoremap <Leader>t :Tagbar<cr>
 nnoremap <Leader>T :Tags<cr>
 nnoremap <Leader>B :BTags<cr>
 
@@ -109,11 +111,6 @@ augroup commentary
   autocmd FileType octave setlocal commentstring=%\ %s
 augroup END
 
-augroup neoformat
-  autocmd!
-  autocmd BufWritePre *.elm,*.js,*.jsx Neoformat
-augroup END
-
 let g:bufExplorerShowRelativePath = 1
 let g:bufExplorerSortBy = "fullpath"
 let g:bufExplorerSplitOutPathName = 0
@@ -121,6 +118,7 @@ nnoremap <Leader>e :BufExplorer<cr>
 
 " set statusline+=%{gutentags#statusline()}
 let g:gutentags_ctags_exclude = [
+      \ ".direnv/*",
       \ ".git/*",
       \ "_build/*",
       \ "client/node_modules/*",
@@ -135,9 +133,22 @@ let g:gutentags_ctags_exclude = [
 
 let g:jsx_ext_required = 0
 
+let g:ale_virtualenv_dir_names = ['.direnv']
 let g:ale_cache_executable_check_failures = 1
 let g:ale_open_list = 1
 let g:ale_set_quickfix = 1
+let g:ale_history_log_output = 1
+let g:ale_linters = {
+      \ 'elixir': ['elixir', 'credo', 'mix'],
+      \}
+let g:ale_fix_on_save = 1
+let g:ale_fixers = {
+      \ 'elixir': ['mix_format'],
+      \ 'elm': ['format'],
+      \ 'javascript': ['prettier'],
+      \ 'python': ['yapf'],
+      \}
+
 
 " RagTag
 let g:ragtag_global_maps = 1

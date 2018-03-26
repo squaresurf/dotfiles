@@ -122,9 +122,11 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 export PGUSER=postgres
 
 export RG_IGNORE='\
+  --glob "!*/elm-stuff/*" \
+  --glob "!*/node_modules/*" \
+  --glob "!.direnv/*" \
   --glob "!.git/*" \
   --glob "!_build/*" \
-  --glob "!client/node_modules/*" \
   --glob "!deps/*" \
   --glob "!dist/*" \
   --glob "!doc/*" \
