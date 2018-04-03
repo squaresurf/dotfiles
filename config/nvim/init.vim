@@ -39,7 +39,7 @@ call plug#end()
 scriptencoding utf8
 
 syntax on
-colorscheme seoul256-light
+colorscheme seoul256
 
 set backspace=indent,eol,start
 set cursorline
@@ -128,6 +128,8 @@ let g:gutentags_ctags_exclude = [
       \ "elm-stuff/*",
       \ "flow-typed/*",
       \ "node_modules/*",
+      \ "serverless/lib/*",
+      \ "tests/elm-stuff/*",
       \ "tmp/*"
       \ ]
 
