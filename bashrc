@@ -122,6 +122,7 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 export PGUSER=postgres
 
 export RG_IGNORE='\
+  --glob "!**/*.pyc" \
   --glob "!*/elm-stuff/*" \
   --glob "!*/node_modules/*" \
   --glob "!.direnv/*" \
@@ -133,6 +134,7 @@ export RG_IGNORE='\
   --glob "!elm-stuff/*" \
   --glob "!flow-typed/*" \
   --glob "!node_modules/*" \
+  --glob "!serverless/lib/*" \
   --glob "!tags" \
   --glob "!tmp/*" \
 '
