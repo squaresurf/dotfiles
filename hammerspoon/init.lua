@@ -27,27 +27,18 @@ function displayCurrentTrack(player)
 end
 
 hs.hotkey.bind({"ctrl"}, "f7", function ()
-  if hs.appfinder.appFromName("iTunes") then
-    hs.itunes.previous()
-    displayCurrentTrack(hs.itunes)
-  elseif hs.appfinder.appFromName("Spotify") then
+  if hs.application.find("Spotify") then
     hs.spotify.previous()
     displayCurrentTrack(hs.spotify)
+  elseif hs.application.find("iTunes") then
+    hs.itunes.previous()
+    displayCurrentTrack(hs.itunes)
   end
 end)
 
 paused = false
 hs.hotkey.bind({"ctrl"}, "f8", function ()
-  if hs.appfinder.appFromName("iTunes") then
-    if not paused then
-      paused = true
-      hs.itunes.pause()
-    else
-      paused = false
-      hs.itunes.play()
-      displayCurrentTrack(hs.itunes)
-    end
-  elseif hs.appfinder.appFromName("Spotify") then
+  if hs.application.find("Spotify") then
     if not paused then
       paused = true
       hs.spotify.pause()
@@ -56,16 +47,25 @@ hs.hotkey.bind({"ctrl"}, "f8", function ()
       hs.spotify.play()
       displayCurrentTrack(hs.spotify)
     end
+  elseif hs.application.find("iTunes") then
+    if not paused then
+      paused = true
+      hs.itunes.pause()
+    else
+      paused = false
+      hs.itunes.play()
+      displayCurrentTrack(hs.itunes)
+    end
   end
 end)
 
 hs.hotkey.bind({"ctrl"}, "f9", function ()
-  if hs.appfinder.appFromName("iTunes") then
-    hs.itunes.next()
-    displayCurrentTrack(hs.itunes)
-  elseif hs.appfinder.appFromName("Spotify") then
+  if hs.application.find("Spotify") then
     hs.spotify.next()
     displayCurrentTrack(hs.spotify)
+  elseif hs.application.find("iTunes") then
+    hs.itunes.next()
+    displayCurrentTrack(hs.itunes)
   end
 end)
 
@@ -114,6 +114,20 @@ function fullsizeWindow()
 end
 
 hs.hotkey.bind({"ctrl", "alt"}, "m", fullsizeWindow)
+
+-- h for half
+hs.hotkey.bind({"ctrl", "alt"}, "c", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.x = max.x
+  f.y = max.y + (max.h * 1/6)
+  f.w = max.w
+  f.h = max.h * 2/3
+  win:setFrame(f)
+end)
 
 hs.hotkey.bind({"ctrl", "alt"}, "Up", function()
   local win = hs.window.focusedWindow()
