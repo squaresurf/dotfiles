@@ -127,6 +127,7 @@ let g:gutentags_ctags_exclude = [
       \ "doc/*",
       \ "elm-stuff/*",
       \ "flow-typed/*",
+      \ "htmlcov/*",
       \ "node_modules/*",
       \ "serverless/lib/*",
       \ "tests/elm-stuff/*",
