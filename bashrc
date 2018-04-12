@@ -133,6 +133,7 @@ export RG_IGNORE='\
   --glob "!doc/*" \
   --glob "!elm-stuff/*" \
   --glob "!flow-typed/*" \
+  --glob "!htmlcov/*" \
   --glob "!node_modules/*" \
   --glob "!serverless/lib/*" \
   --glob "!tags" \
