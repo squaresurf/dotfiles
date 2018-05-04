@@ -15,4 +15,4 @@ fi
 
 tmux new-window -d -t $sess_name
 
-tmux attach
+tmux attach-session -t $sess_name

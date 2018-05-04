@@ -123,6 +123,8 @@ export PGUSER=postgres
 
 export RG_IGNORE='\
   --glob "!**/*.pyc" \
+  --glob "!**/.shadow-cljs/*" \
+  --glob "!**/compiled/*" \
   --glob "!*/elm-stuff/*" \
   --glob "!*/node_modules/*" \
   --glob "!.direnv/*" \

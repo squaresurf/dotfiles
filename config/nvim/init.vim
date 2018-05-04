@@ -6,8 +6,10 @@ let g:polyglot_disabled = ['elm', 'r']
 
 Plug 'jalvesaq/Nvim-R'
 
+" Plug 'slashmili/alchemist.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'guns/vim-sexp'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -15,20 +17,22 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'justinmk/vim-dirvish'
+Plug 'kien/rainbow_parentheses.vim'
 Plug 'lervag/vimtex'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'rizzatti/dash.vim'
-" Plug 'slashmili/alchemist.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-rsi'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'w0rp/ale'
@@ -86,6 +90,8 @@ nnoremap <Leader>z za
 nnoremap <Leader>t :Tagbar<cr>
 nnoremap <Leader>T :Tags<cr>
 nnoremap <Leader>B :BTags<cr>
+nnoremap <Leader>v :Eval<cr>
+nnoremap <Leader>g :Goyo<cr>:Limelight!!<cr>
 
 " copy and paste with the system clipboard
 vmap <Leader>y "+y
@@ -96,19 +102,25 @@ vmap <Leader>p "+p
 vmap <Leader>P "+P
 
 augroup filetypes
+  autocmd!
   autocmd BufNewFile,BufRead Capfile,Gemfile,Berksfile,Vagrantfile,Guardfile setlocal filetype=ruby
   autocmd BufNewFile,BufRead .eslintrc setlocal filetype=json
   autocmd BufNewFile,BufRead .envrc setlocal filetype=sh
   autocmd BufNewFile,BufRead *.m setlocal filetype=octave
 augroup END
 
-augroup goyo
-  autocmd! User GoyoEnter Limelight
-  autocmd! User GoyoLeave Limelight!
+augroup commentary
+  autocmd!
+  autocmd FileType octave setlocal commentstring=%\ %s
 augroup END
 
-augroup commentary
-  autocmd FileType octave setlocal commentstring=%\ %s
+augroup lisp
+  autocmd!
+  autocmd VimEnter * RainbowParenthesesToggle
+  autocmd Syntax * RainbowParenthesesLoadChevron
+  autocmd Syntax * RainbowParenthesesLoadRound
+  autocmd Syntax * RainbowParenthesesLoadSquare
+  autocmd Syntax * RainbowParenthesesLoadBraces
 augroup END
 
 let g:bufExplorerShowRelativePath = 1
@@ -122,6 +134,7 @@ let g:gutentags_ctags_exclude = [
       \ ".git/*",
       \ "_build/*",
       \ "client/node_modules/*",
+      \ "compiled/*",
       \ "deps/*",
       \ "dist/*",
       \ "doc/*",

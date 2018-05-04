@@ -7,7 +7,7 @@
 Session.vim
 
 # ctags files
-tags
+tags*
 
 # Mac files
 .DS_Store

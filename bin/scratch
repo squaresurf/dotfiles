@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+sess_name="scratch"
+
+tmux new-session -d -s $sess_name -n scratch "nvim ~/Documents/scratch.md"
+
+tmux new-window -d -t "$sess_name:2" -n newsboat "newsboat"
+
+tmux attach-session -t $sess_name
