@@ -171,22 +171,25 @@ eval "$(fasd --init auto)"
 alias v='f -e nvim'
 
 # very hop
-eval "$(~/code/very/hop/bin/hop init -)"
+if [ -f "~/code/very/hop/bin/hop" ]; then
+  eval "$(~/code/very/hop/bin/hop init -)"
+fi
 
 # direnv
 eval "$(direnv hook bash)"
 
 # autocompletions
-if [ -f `brew --prefix`/etc/bash_completion ]; then
+if [ -n "$(which brew)" ] && [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
 
 # stack autocompletion
+haskell_local_bin=""
 if [ -n "$(which stack)" ]; then
   eval "$(stack --bash-completion-script stack)"
-fi
 
-haskell_local_bin=$(stack path --local-bin)
+  haskell_local_bin=$(stack path --local-bin)
+fi
 
 # This is in reverse order.
 paths=(
