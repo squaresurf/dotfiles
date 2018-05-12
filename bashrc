@@ -124,6 +124,7 @@ export PGUSER=postgres
 export RG_IGNORE='\
   --glob "!**/*.pyc" \
   --glob "!**/.shadow-cljs/*" \
+  --glob "!**/.webpack/*" \
   --glob "!**/compiled/*" \
   --glob "!*/elm-stuff/*" \
   --glob "!*/node_modules/*" \
@@ -211,3 +212,10 @@ for p in ${paths[@]}; do
 done
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[ -f /Users/daniel/code/very/carson/carson/graphql/node_modules/tabtab/.completions/serverless.bash ] && . /Users/daniel/code/very/carson/carson/graphql/node_modules/tabtab/.completions/serverless.bash
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[ -f /Users/daniel/code/very/carson/carson/graphql/node_modules/tabtab/.completions/sls.bash ] && . /Users/daniel/code/very/carson/carson/graphql/node_modules/tabtab/.completions/sls.bash

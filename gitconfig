@@ -7,7 +7,7 @@
 [core]
   excludesfile = ~/.gitignore
   pager = less -FXR
-  editor = nvim
+  editor = nvim -u ~/.gitnvim
 [pager]
   status = on
 [alias]

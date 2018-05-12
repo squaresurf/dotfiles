@@ -163,11 +163,15 @@ let g:ale_fixers = {
       \ 'elm': ['format'],
       \ 'javascript': ['prettier'],
       \ 'python': ['yapf'],
+      \ 'typescript': ['tslint'],
       \}
 
 
 " RagTag
 let g:ragtag_global_maps = 1
+
+" Goyo
+let g:goyo_width = 120
 
 " FZF
 nnoremap <Leader>o :Files<cr>
