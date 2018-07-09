@@ -72,6 +72,7 @@ let g:loaded_python3_provider = 1
 
 " set leader to space
 let g:mapleader = "\<space>"
+let g:maplocalleader = "\<space>\<space>"
 
 " force unix lineendings
 nnoremap <Leader>u :e ++ff=unix<cr>
@@ -90,7 +91,6 @@ nnoremap <Leader>z za
 nnoremap <Leader>t :Tagbar<cr>
 nnoremap <Leader>T :Tags<cr>
 nnoremap <Leader>B :BTags<cr>
-nnoremap <Leader>v :Eval<cr>
 nnoremap <Leader>g :Goyo<cr>:Limelight!!<cr>
 
 " copy and paste with the system clipboard
@@ -122,6 +122,9 @@ augroup lisp
   autocmd Syntax * RainbowParenthesesLoadSquare
   autocmd Syntax * RainbowParenthesesLoadBraces
 augroup END
+
+" disable annoying insert mappings
+let g:sexp_enable_insert_mode_mappings = 0
 
 let g:bufExplorerShowRelativePath = 1
 let g:bufExplorerSortBy = "fullpath"
@@ -163,7 +166,7 @@ let g:ale_fixers = {
       \ 'elm': ['format'],
       \ 'javascript': ['prettier'],
       \ 'python': ['yapf'],
-      \ 'typescript': ['tslint'],
+      \ 'typescript': ['prettier'],
       \}
 
 
