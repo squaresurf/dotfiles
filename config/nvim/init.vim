@@ -35,6 +35,7 @@ Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+" Plug 'venantius/vim-cljfmt', { 'tag': '0.6' }
 Plug 'w0rp/ale'
 
 " Initialize plugin system
@@ -114,6 +115,17 @@ augroup commentary
   autocmd FileType octave setlocal commentstring=%\ %s
 augroup END
 
+let g:rbpt_colorpairs = [
+      \ [ '13', '#6c71c4'],
+      \ [ '5',  '#d33682'],
+      \ [ '1',  '#dc322f'],
+      \ [ '9',  '#cb4b16'],
+      \ [ '3',  '#b58900'],
+      \ [ '2',  '#859900'],
+      \ [ '6',  '#2aa198'],
+      \ [ '4',  '#268bd2'],
+      \ ]
+
 augroup lisp
   autocmd!
   autocmd VimEnter * RainbowParenthesesToggle
@@ -122,9 +134,6 @@ augroup lisp
   autocmd Syntax * RainbowParenthesesLoadSquare
   autocmd Syntax * RainbowParenthesesLoadBraces
 augroup END
-
-" disable annoying insert mappings
-let g:sexp_enable_insert_mode_mappings = 0
 
 let g:bufExplorerShowRelativePath = 1
 let g:bufExplorerSortBy = "fullpath"
@@ -169,7 +178,6 @@ let g:ale_fixers = {
       \ 'typescript': ['prettier'],
       \}
 
-
 " RagTag
 let g:ragtag_global_maps = 1
 
@@ -177,12 +185,17 @@ let g:ragtag_global_maps = 1
 let g:goyo_width = 120
 
 " FZF
-nnoremap <Leader>o :Files<cr>
-nnoremap <Leader>s :Find
+set grepprg=rg\ --vimgrep
+command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always '.$RG_IGNORE.' '.shellescape(<q-args>), 1,
+      \   <bang>0 ? fzf#vim#with_preview('up:60%')
+      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \   <bang>0)
+      " \ 'rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow '.$RG_IGNORE.' --color "always" '.shellescape(<q-args>), 3, <bang>0)
 
-command! -bang -nargs=* Find call fzf#vim#grep(
-      \ 'rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow '.$RG_IGNORE.' --color "always" '.shellescape(<q-args>), 1, <bang>0)
-
+nnoremap <Leader>f :Files<cr>
+nnoremap <Leader>/ :Rg<cr>
 
 let g:tagbar_left = 1
 let g:tagbar_autoclose = 1
