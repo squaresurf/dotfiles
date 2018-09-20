@@ -100,7 +100,7 @@ hs.hotkey.bind({"ctrl"}, "f12", function ()
 end)
 
 -- Window Hotkeys
-function fullsizeWindow()
+hs.hotkey.bind({"ctrl", "alt"}, "m", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local screen = win:screen()
@@ -111,9 +111,7 @@ function fullsizeWindow()
   f.w = max.w
   f.h = max.h
   win:setFrame(f)
-end
-
-hs.hotkey.bind({"ctrl", "alt"}, "m", fullsizeWindow)
+end)
 
 -- h for half
 hs.hotkey.bind({"ctrl", "alt"}, "c", function()
@@ -164,6 +162,20 @@ hs.hotkey.bind({"ctrl", "alt"}, "Left", function()
   f.x = max.x
   f.y = max.y
   f.w = max.w / 2
+  f.h = max.h
+  win:setFrame(f)
+end)
+
+-- Left with notifications
+hs.hotkey.bind({"ctrl", "alt", "cmd"}, "Left", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.x = max.x
+  f.y = max.y
+  f.w = max.w - 360
   f.h = max.h
   win:setFrame(f)
 end)
