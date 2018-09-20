@@ -150,6 +150,7 @@ export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow $RG_IGNORE"
 # Add ssh keys
 keys=(
   $HOME/.ssh/id_rsa
+  $HOME/.ssh/data_science_team.pem
 )
 
 for key in ${keys[@]}; do
