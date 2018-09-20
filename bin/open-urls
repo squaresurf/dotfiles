@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+while IFS= read -r line; do
+  open $line
+  printf '%s\n' "$line"
+done
