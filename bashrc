@@ -176,8 +176,9 @@ eval "$(fasd --init auto)"
 alias v='f -e nvim'
 
 # very hop
-if [ -f "~/code/very/hop/bin/hop" ]; then
-  eval "$(~/code/very/hop/bin/hop init -)"
+hop="$HOME/code/very/hop/bin/hop"
+if [ -f "$hop" ]; then
+  eval "$($hop init -)"
 fi
 
 # direnv
