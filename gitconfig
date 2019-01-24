@@ -12,13 +12,8 @@
   status = on
 [alias]
   c = commit -v
-  t = tag -s
-  deliver = reflow deliver
   glog = log --graph --show-signature
-  lc = log -1 --pretty=%B
-  review = reflow review
   st = diff --staged
-  start = reflow start
 [include]
   path = ~/.gitconfig.local
 [push]
