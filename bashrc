@@ -107,6 +107,7 @@ export GOPATH="$HOME/code/go"
 export OCLINT_HOME="$HOME/bin/oclint-0.7-x86_64-apple-darwin-10"
 
 # User specific aliases and functions
+alias hpr='hub pull-request'
 alias la='ls -al'
 alias be='bundle exec'
 alias grep='grep --color'
@@ -122,17 +123,27 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 export PGUSER=postgres
 
 export RG_IGNORE='\
+  --glob "!**/*.egg-info/*" \
   --glob "!**/*.pyc" \
   --glob "!**/.build/*" \
   --glob "!**/.direnv/*" \
+  --glob "!**/.hypothesis/*" \
+  --glob "!**/.mypy_cache/*" \
+  --glob "!**/.pytest_cache/*" \
+  --glob "!**/.serverless/*" \
   --glob "!**/.shadow-cljs/*" \
   --glob "!**/.webpack/*" \
+  --glob "!**/_build/*" \
+  --glob "!**/_nerves-tmp/*" \
   --glob "!**/compiled/*" \
+  --glob "!**/deps/*" \
+  --glob "!**/elm-stuff/*" \
   --glob "!**/node_modules/*" \
-  --glob "!*/elm-stuff/*" \
-  --glob "!*/node_modules/*" \
   --glob "!.direnv/*" \
+  --glob "!.elixir_ls/*" \
   --glob "!.git/*" \
+  --glob "!.pytest_cache/*" \
+  --glob "!.serverless/*" \
   --glob "!_build/*" \
   --glob "!deps/*" \
   --glob "!dist/*" \

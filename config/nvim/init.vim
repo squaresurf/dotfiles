@@ -81,9 +81,6 @@ nnoremap <Leader>u :e ++ff=unix<cr>
 " Quick buffer changes
 nnoremap <Leader>l :b#<cr>
 
-nnoremap <Leader>k :ALENext<cr>
-nnoremap <Leader>j :ALEPrevious<cr>
-
 nnoremap <Leader>n :noh<cr>
 nnoremap <Leader>d :Dash<cr>
 nnoremap <Leader>h :ElmShowDocs<cr>
@@ -142,8 +139,33 @@ nnoremap <Leader>e :BufExplorer<cr>
 
 " set statusline+=%{gutentags#statusline()}
 let g:gutentags_ctags_exclude = [
+      \ "**/.direnv/*",
+      \ "**/.elixir_ls/*",
+      \ "**/.git/*",
+      \ "**/.hypothesis/*",
+      \ "**/.mypy_cache/*",
+      \ "**/.pytest_cache/*",
+      \ "**/.serverless/*",
+      \ "**/_build/*",
+      \ "**/client/node_modules/*",
+      \ "**/compiled/*",
+      \ "**/deps/*",
+      \ "**/dist/*",
+      \ "**/doc/*",
+      \ "**/elm-stuff/*",
+      \ "**/flow-typed/*",
+      \ "**/htmlcov/*",
+      \ "**/node_modules/*",
+      \ "**/serverless/lib/*",
+      \ "**/tests/elm-stuff/*",
+      \ "**/tmp/*",
       \ ".direnv/*",
+      \ ".elixir_ls/*",
       \ ".git/*",
+      \ ".hypothesis/*",
+      \ ".mypy_cache/*",
+      \ ".pytest_cache/*",
+      \ ".serverless/*",
       \ "_build/*",
       \ "client/node_modules/*",
       \ "compiled/*",
@@ -163,8 +185,8 @@ let g:jsx_ext_required = 0
 
 let g:ale_virtualenv_dir_names = ['.direnv']
 let g:ale_cache_executable_check_failures = 1
-let g:ale_open_list = 1
-let g:ale_set_quickfix = 1
+" let g:ale_open_list = 1
+" let g:ale_set_quickfix = 1
 let g:ale_history_log_output = 1
 let g:ale_linters = {
       \ 'elixir': ['elixir', 'credo', 'mix'],
@@ -174,7 +196,7 @@ let g:ale_fixers = {
       \ 'elixir': ['mix_format'],
       \ 'elm': ['format'],
       \ 'javascript': ['prettier'],
-      \ 'python': ['yapf'],
+      \ 'python': ['isort', 'black', 'yapf'],
       \ 'typescript': ['prettier'],
       \}
 
