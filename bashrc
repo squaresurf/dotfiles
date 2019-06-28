@@ -196,16 +196,21 @@ fi
 eval "$(direnv hook bash)"
 
 # brew autocompletions
-if type brew &>/dev/null; then
-  for COMPLETION in $(brew --prefix)/etc/bash_completion.d/*
-  do
-    [[ -f $COMPLETION ]] && source "$COMPLETION"
-  done
-  if [[ -f $(brew --prefix)/etc/profile.d/bash_completion.sh ]];
-  then
-    source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
-  fi
+## old
+if [ -n "$(which brew)" ] && [ -f `brew --prefix`/etc/bash_completion ]; then
+  source `brew --prefix`/etc/bash_completion
 fi
+# ## new
+# if type brew &>/dev/null; then
+#   for COMPLETION in $(brew --prefix)/etc/bash_completion.d/*
+#   do
+#     [[ -f $COMPLETION ]] && source "$COMPLETION"
+#   done
+#   if [[ -f $(brew --prefix)/etc/profile.d/bash_completion.sh ]];
+#   then
+#     source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+#   fi
+# fi
 
 # kubectl autocompletion
 if [ -n "$(kubectl)" ]; then
