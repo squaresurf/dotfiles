@@ -17,3 +17,6 @@ daniel_ignore*.exs
 
 # PHP Scripts
 daniel_*.php
+
+# VS Code
+.vscode

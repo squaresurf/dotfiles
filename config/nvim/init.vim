@@ -1,6 +1,8 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'elmcast/elm-vim'
+" Plug 'elmcast/elm-vim'
+" Temporarily point at fork in order to support elm 0.19
+Plug 'zaptic/elm-vim'
 Plug 'sheerun/vim-polyglot'
 let g:polyglot_disabled = ['elm', 'r']
 
@@ -90,6 +92,7 @@ nnoremap <Leader>t :Tagbar<cr>
 nnoremap <Leader>T :Tags<cr>
 nnoremap <Leader>B :BTags<cr>
 nnoremap <Leader>g :Goyo<cr>:Limelight!!<cr>
+nnoremap <Leader>m :ALENext<cr>
 
 " copy and paste with the system clipboard
 vmap <Leader>y "+y
@@ -184,17 +187,17 @@ let g:gutentags_ctags_exclude = [
 let g:jsx_ext_required = 0
 
 let g:ale_virtualenv_dir_names = ['.direnv']
-let g:ale_cache_executable_check_failures = 1
+" let g:ale_cache_executable_check_failures = 1
 " let g:ale_open_list = 1
 " let g:ale_set_quickfix = 1
 let g:ale_history_log_output = 1
 let g:ale_linters = {
-      \ 'elixir': ['elixir', 'credo', 'mix'],
+      \ 'elixir': [],
       \}
 let g:ale_fix_on_save = 1
 let g:ale_fixers = {
       \ 'elixir': ['mix_format'],
-      \ 'elm': ['format'],
+      \ 'elm': ['elm-format'],
       \ 'javascript': ['prettier'],
       \ 'python': ['isort', 'black', 'yapf'],
       \ 'typescript': ['prettier'],

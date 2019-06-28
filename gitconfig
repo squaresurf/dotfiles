@@ -17,7 +17,7 @@
 [include]
   path = ~/.gitconfig.local
 [push]
-  default = simple
+	default = simple
 [commit]
   gpgsign = true
   template = ~/.gitmessage
