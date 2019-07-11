@@ -160,13 +160,14 @@ export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow $RG_IGNORE"
 
 # Add ssh keys
 keys=(
-  $HOME/.ssh/id_rsa
-  $HOME/.ssh/data_science_team.pem
+  id_rsa
+  very_dr_bitbucket
 )
 
 for key in ${keys[@]}; do
-  if [[ -f $key && -z "$(ssh-add -l | grep $key)" ]]; then
-    ssh-add $key
+  keyfile="$HOME/.ssh/$key"
+  if [[ -f $keyfile && -z "$(ssh-add -l | grep $key)" ]]; then
+    ssh-add $keyfile
   fi
 done
 
