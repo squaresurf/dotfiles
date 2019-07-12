@@ -142,7 +142,7 @@ augroup END
 " let g:bufExplorerSortBy = "fullpath"
 " let g:bufExplorerSplitOutPathName = 0
 " nnoremap <leader>e :BufExplorer<cr>
-nnoremap <leader>e :Buffers<cr>
+nnoremap <leader>b :Buffers<cr>
 
 " " " set statusline+=%{gutentags#statusline()}
 " " " let g:gutentags_ctags_exclude = [
