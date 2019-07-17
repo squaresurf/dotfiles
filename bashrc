@@ -144,6 +144,7 @@ export RG_IGNORE='\
   --glob "!.git/*" \
   --glob "!.pytest_cache/*" \
   --glob "!.serverless/*" \
+  --glob "!.stack-work/*" \
   --glob "!_build/*" \
   --glob "!deps/*" \
   --glob "!dist/*" \
