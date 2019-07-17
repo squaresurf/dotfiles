@@ -256,6 +256,9 @@ nnoremap <leader>/ :Rg<cr>
 
 
 """"""""""" START Coc stuff """""""""""""""""""""""
+" Set info color text to something readable.
+highlight CocInfoSign ctermfg=144 guifg=#BDBC98
+
 " if hidden is not set, TextEdit might fail.
 set hidden
 
