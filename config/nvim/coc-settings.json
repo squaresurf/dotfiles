@@ -1,8 +1,32 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["javascript", "json", "haskell"],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "eelixir",
+    "elixir",
+    "elm",
+    "haskell",
+    "javascript",
+    "json",
+    "julia"
+  ],
   "diagnostic.enableSign": true,
   "diagnostic.maxWindowHeight": 80,
   "languageserver": {
+    "elixirLS": {
+      "command": "~/LanguageServers/elixir-ls/language_server.sh",
+      "filetypes": ["elixir", "eelixir"]
+    },
+    "elmLS": {
+      "command": "elm-language-server",
+      "args": ["--stdio"],
+      "filetypes": ["elm"],
+      "rootPatterns": ["elm.json"],
+      "initializationOptions": {
+        "runtime": "node",
+        "elmPath": "elm",
+        "elmFormatPath": "elm-format",
+        "elmTestPath": "elm-test"
+      }
+    },
     "haskell": {
       "command": "hie-wrapper",
       "rootPatterns": [".stack.yaml", "cabal.config", "package.yaml"],
@@ -15,6 +39,10 @@
           "completionSnippetsOn": true
         }
       }
+    },
+    "julia": {
+      "command": "~/LanguageServers/LanguageServerScript.jl",
+      "filetypes": ["julia"]
     }
   }
 }

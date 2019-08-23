@@ -88,7 +88,7 @@ nnoremap <leader>l :b#<cr>
 
 nnoremap <leader>n :noh<cr>
 nnoremap <leader>d :Dash<cr>
-nnoremap <leader>h :ElmShowDocs<cr>
+" nnoremap <leader>h :ElmShowDocs<cr>
 " nnoremap <leader>H :ElmBrowseDocs<cr>
 " nnoremap <leader>z za
 " nnoremap <leader>t :Tagbar<cr>
@@ -221,7 +221,7 @@ command! -bang -nargs=* Rg
       \   <bang>0 ? fzf#vim#with_preview('up:60%')
       \           : fzf#vim#with_preview('right:50%:hidden', '?'),
       \   <bang>0)
-      \ 'rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow '.$RG_IGNORE.' --color "always" '.shellescape(<q-args>), 3, <bang>0)
+      " \ 'rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow '.$RG_IGNORE.' --color "always" '.shellescape(<q-args>), 3, <bang>0)
 
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>/ :Rg<cr>
@@ -275,10 +275,18 @@ set updatetime=300
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 
-" function! s:check_back_space() abort
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
