@@ -20,3 +20,6 @@ daniel_*.php
 
 # VS Code
 .vscode
+
+# LanguageServer Caches
+.elixir_ls/
