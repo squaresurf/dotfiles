@@ -1,0 +1,6 @@
+bundler
+pry
+rake
+rubocop
+slim_lint
+solargraph
