@@ -12,7 +12,7 @@ insert_final_newline = true
 max_line_length = 110
 trim_trailing_whitespace = true
 
-[**.{php,py,elm,julia}]
+[**.{php,py,elm,julia,xml}]
 indent_size = 4
 
 [**.py]
