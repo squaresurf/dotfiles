@@ -6,7 +6,8 @@
     "haskell",
     "javascript",
     "json",
-    "julia"
+    "julia",
+    "ruby"
   ],
   "diagnostic.enableSign": true,
   "diagnostic.maxWindowHeight": 80,
@@ -27,6 +28,11 @@
         "elmTestPath": "elm-test"
       }
     },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["go"]
+    },
     "haskell": {
       "command": "hie-wrapper",
       "rootPatterns": [".stack.yaml", "cabal.config", "package.yaml"],
@@ -44,5 +50,13 @@
       "command": "~/LanguageServers/LanguageServerScript.jl",
       "filetypes": ["julia"]
     }
-  }
+  },
+  "solargraph.diagnostics": true,
+  "solargraph.completion": true,
+  "solargraph.hover": true,
+  "solargraph.symbols": true,
+  "solargraph.definitions": true,
+  "solargraph.rename": true,
+  "solargraph.references": true,
+  "solargraph.formatting": true
 }
