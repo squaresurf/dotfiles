@@ -1,47 +1,25 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Plug 'elmcast/elm-vim'
-" Temporarily point at fork in order to support elm 0.19
-" Plug 'zaptic/elm-vim'
-Plug 'sheerun/vim-polyglot'
-" let g:polyglot_disabled = ['elm', 'r']
-
-" Plug 'jalvesaq/Nvim-R'
-
-" Plug 'slashmili/alchemist.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
-" Plug 'guns/vim-sexp'
-" Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-" Plug 'junegunn/goyo.vim'
-" Plug 'junegunn/limelight.vim'
 Plug 'junegunn/seoul256.vim'
-" Plug 'justinmk/vim-dirvish'
-" Plug 'kien/rainbow_parentheses.vim'
-" Plug 'lervag/vimtex'
-" Plug 'ludovicchabant/vim-gutentags'
-" Plug 'majutsushi/tagbar'
-" Plug 'mattn/emmet-vim'
+Plug 'lervag/vimtex'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-" Plug 'rizzatti/dash.vim'
+Plug 'rizzatti/dash.vim'
+Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
-" Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-repeat'
-" Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-rsi'
-" Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
-" Plug 'venantius/vim-cljfmt', { 'tag': '0.6' }
-" Plug 'w0rp/ale'
 
 " Initialize plugin system
 call plug#end()
@@ -73,8 +51,8 @@ set wildmenu
 set wildmode=longest,list,full
 
 " " Tell NeoVim to not try to load python
-" let g:loaded_python_provider = 1
-" let g:loaded_python3_provider = 1
+let g:loaded_python_provider = 1
+let g:loaded_python3_provider = 1
 
 " set leader to space
 let g:mapleader = "\<space>"
@@ -88,14 +66,6 @@ nnoremap <leader>l :b#<cr>
 
 nnoremap <leader>n :noh<cr>
 nnoremap <leader>d :Dash<cr>
-" nnoremap <leader>h :ElmShowDocs<cr>
-" nnoremap <leader>H :ElmBrowseDocs<cr>
-" nnoremap <leader>z za
-" nnoremap <leader>t :Tagbar<cr>
-" nnoremap <leader>T :Tags<cr>
-" nnoremap <leader>B :BTags<cr>
-" nnoremap <leader>g :Goyo<cr>:Limelight!!<cr>
-" nnoremap <leader>m :ALENext<cr>
 
 " copy and paste with the system clipboard
 vmap <leader>y "+y
@@ -118,100 +88,7 @@ augroup commentary
   autocmd FileType octave setlocal commentstring=%\ %s
 augroup END
 
-" let g:rbpt_colorpairs = [
-"       \ [ '13', '#6c71c4'],
-"       \ [ '5',  '#d33682'],
-"       \ [ '1',  '#dc322f'],
-"       \ [ '9',  '#cb4b16'],
-"       \ [ '3',  '#b58900'],
-"       \ [ '2',  '#859900'],
-"       \ [ '6',  '#2aa198'],
-"       \ [ '4',  '#268bd2'],
-"       \ ]
-
-" " augroup lisp
-" "   autocmd!
-" "   autocmd VimEnter * RainbowParenthesesToggle
-" "   autocmd Syntax * RainbowParenthesesLoadChevron
-" "   autocmd Syntax * RainbowParenthesesLoadRound
-" "   autocmd Syntax * RainbowParenthesesLoadSquare
-" "   autocmd Syntax * RainbowParenthesesLoadBraces
-" " augroup END
-
-" let g:bufExplorerShowRelativePath = 1
-" let g:bufExplorerSortBy = "fullpath"
-" let g:bufExplorerSplitOutPathName = 0
-" nnoremap <leader>e :BufExplorer<cr>
 nnoremap <leader>b :Buffers<cr>
-
-" " " set statusline+=%{gutentags#statusline()}
-" " " let g:gutentags_ctags_exclude = [
-" " "       \ "**/.direnv/*",
-" " "       \ "**/.elixir_ls/*",
-" " "       \ "**/.git/*",
-" " "       \ "**/.hypothesis/*",
-" " "       \ "**/.mypy_cache/*",
-" " "       \ "**/.pytest_cache/*",
-" " "       \ "**/.serverless/*",
-" " "       \ "**/_build/*",
-" " "       \ "**/client/node_modules/*",
-" " "       \ "**/compiled/*",
-" " "       \ "**/deps/*",
-" " "       \ "**/dist/*",
-" " "       \ "**/doc/*",
-" " "       \ "**/elm-stuff/*",
-" " "       \ "**/flow-typed/*",
-" " "       \ "**/htmlcov/*",
-" " "       \ "**/node_modules/*",
-" " "       \ "**/serverless/lib/*",
-" " "       \ "**/tests/elm-stuff/*",
-" " "       \ "**/tmp/*",
-" " "       \ ".direnv/*",
-" " "       \ ".elixir_ls/*",
-" " "       \ ".git/*",
-" " "       \ ".hypothesis/*",
-" " "       \ ".mypy_cache/*",
-" " "       \ ".pytest_cache/*",
-" " "       \ ".serverless/*",
-" " "       \ "_build/*",
-" " "       \ "client/node_modules/*",
-" " "       \ "compiled/*",
-" " "       \ "deps/*",
-" " "       \ "dist/*",
-" " "       \ "doc/*",
-" " "       \ "elm-stuff/*",
-" " "       \ "flow-typed/*",
-" " "       \ "htmlcov/*",
-" " "       \ "node_modules/*",
-" " "       \ "serverless/lib/*",
-" " "       \ "tests/elm-stuff/*",
-" " "       \ "tmp/*"
-" " "       \ ]
-
-" " let g:jsx_ext_required = 0
-
-" " " let g:ale_virtualenv_dir_names = ['.direnv']
-" " " " let g:ale_cache_executable_check_failures = 1
-" " " " let g:ale_open_list = 1
-" " " " let g:ale_set_quickfix = 1
-" " " let g:ale_history_log_output = 1
-" " " let g:ale_linters = {
-" " "       \ 'elixir': [],
-" " "       \}
-" " " let g:ale_fix_on_save = 1
-" " " let g:ale_fixers = {
-" " "       \ 'elixir': ['mix_format'],
-" " "       \ 'elm': ['elm-format'],
-" " "       \ 'javascript': ['prettier'],
-" " "       \ 'python': ['isort', 'black', 'yapf'],
-" " "       \ 'typescript': ['prettier'],
-" " "       \}
-
-" " " RagTag
-" " let g:ragtag_global_maps = 1
-
-" " " Goyo
-" " let g:goyo_width = 120
 
 " FZF
 set grepprg=rg\ --vimgrep
@@ -225,35 +102,6 @@ command! -bang -nargs=* Rg
 
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>/ :Rg<cr>
-
-" " " let g:tagbar_left = 1
-" " " let g:tagbar_autoclose = 1
-" " " let g:tagbar_autofocus = 1
-" " " let g:tagbar_type_elixir = {
-" " "     \ 'ctagstype' : 'elixir',
-" " "     \ 'kinds' : [
-" " "         \ 'f:functions',
-" " "         \ 'functions:functions',
-" " "         \ 'c:callbacks',
-" " "         \ 'd:delegates',
-" " "         \ 'e:exceptions',
-" " "         \ 'i:implementations',
-" " "         \ 'a:macros',
-" " "         \ 'o:operators',
-" " "         \ 'm:modules',
-" " "         \ 'p:protocols',
-" " "         \ 'r:records',
-" " "         \ 't:tests'
-" " "     \ ]
-" " " \ }
-
-
-
-
-
-
-
-
 
 """"""""""" START Coc stuff """""""""""""""""""""""
 " Set info color text to something readable.
@@ -318,14 +166,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
-" augroup mygroup
-"   autocmd!
-"   " Setup formatexpr specified filetype(s).
-"   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-"   " Update signature help on jump placeholder
-"   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-" augroup end
-
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
@@ -353,6 +193,8 @@ nnoremap <silent> <leader>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <localleader>p  :<C-u>CocListResume<CR>
 
+""" Language Specific Things """
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 """"""""""" Plugins """"""""""""""
 " Requires CocInstall coc-prettier and format on save config.
