@@ -196,6 +196,7 @@ nnoremap <silent> <localleader>p  :<C-u>CocListResume<CR>
 
 """ Language Specific Things """
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufWritePre *.go :GoLint
 
 """"""""""" Plugins """"""""""""""
 " Requires CocInstall coc-prettier and format on save config.
