@@ -51,6 +51,7 @@
       "filetypes": ["julia"]
     }
   },
+  "solargraph.useBundler": true,
   "solargraph.diagnostics": true,
   "solargraph.completion": true,
   "solargraph.hover": true,
