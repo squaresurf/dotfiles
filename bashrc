@@ -148,7 +148,6 @@ export RG_IGNORE='\
   --glob "!_build/*" \
   --glob "!deps/*" \
   --glob "!dist/*" \
-  --glob "!doc/*" \
   --glob "!elm-stuff/*" \
   --glob "!flow-typed/*" \
   --glob "!htmlcov/*" \
@@ -162,12 +161,12 @@ export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow $RG_IGNORE"
 # Add ssh keys
 keys=(
   id_rsa
-  very_dr_bitbucket
 )
 
 for key in ${keys[@]}; do
   keyfile="$HOME/.ssh/$key"
-  if [[ -f $keyfile && -z "$(ssh-add -l | grep $key)" ]]; then
+  pub_key=$(cat $HOME/.ssh/$key.pub | awk '{print $2}')
+  if [[ -f $keyfile && -z "$(ssh-add -L | grep $pub_key)" ]]; then
     ssh-add $keyfile
   fi
 done
@@ -178,44 +177,34 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
   alias stat='stat -x'
 fi
 
-# nova
-nova="$HOME/.nova/environment.bash"
-if [ -f $nova ]; then
-    source $nova
-fi
-
 # fasd
 eval "$(fasd --init auto)"
 alias v='f -e nvim'
 
-# very hop
-hop="$HOME/code/very/hop/bin/hop"
-if [ -f "$hop" ]; then
-  eval "$($hop init -)"
-fi
-
 # direnv
-eval "$(direnv hook bash)"
+if [ -n "$(which direnv)" ]; then
+  eval "$(direnv hook bash)"
+fi
 
 # brew autocompletions
-## old
-if [ -n "$(which brew)" ] && [ -f `brew --prefix`/etc/bash_completion ]; then
-  source `brew --prefix`/etc/bash_completion
+if type brew &>/dev/null; then
+  HOMEBREW_PREFIX="$(brew --prefix)"
+  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+  else
+    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+      [[ -r "$COMPLETION" ]] && source "$COMPLETION"
+    done
+  fi
 fi
-# ## new
-# if type brew &>/dev/null; then
-#   for COMPLETION in $(brew --prefix)/etc/bash_completion.d/*
-#   do
-#     [[ -f $COMPLETION ]] && source "$COMPLETION"
-#   done
-#   if [[ -f $(brew --prefix)/etc/profile.d/bash_completion.sh ]];
-#   then
-#     source "$(brew --prefix)/etc/profile.d/bash_completion.sh"
-#   fi
-# fi
+
+# lab autocompletions
+if type lab &>/dev/null; then
+  source <(lab completion bash)
+fi
 
 # kubectl autocompletion
-if [ -n "$(kubectl)" ]; then
+if type kubectl &>/dev/null; then
   source <(kubectl completion bash)
 fi
 
