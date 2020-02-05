@@ -1,7 +1,7 @@
 [user]
   name = Daniel Paul Searles
-  email = daniel.paul.searles@gmail.com
-  signingkey = 64EAA50B
+  email = dsearles@gitlab.com
+  signingkey = D7AE9A51A8B7A56A1A0F4CD92208BDD3DB9C2095
 [color]
   ui = true
 [core]
@@ -12,23 +12,25 @@
   status = on
 [alias]
   c = commit -v
+  mrp = push -o mr.create -o ci.skip
   glog = log --graph --show-signature
   st = diff --staged
+  please = push --force-with-lease
 [include]
   path = ~/.gitconfig.local
 [push]
-	default = simple
+  default = simple
 [commit]
   gpgsign = true
   template = ~/.gitmessage
 [reflow]
-	git-server = GitHub
+  git-server = GitHub
   always-deploy-and-cleanup = true
 [github]
-	site = https://github.com
-	endpoint = https://api.github.com
+  site = https://github.com
+  endpoint = https://api.github.com
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
