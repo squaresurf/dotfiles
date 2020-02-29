@@ -7,7 +7,8 @@
     "javascript",
     "json",
     "julia",
-    "ruby"
+    "ruby",
+    "rust"
   ],
   "diagnostic.enableSign": true,
   "diagnostic.maxWindowHeight": 80,
@@ -47,7 +48,14 @@
       }
     },
     "julia": {
-      "command": "~/LanguageServers/LanguageServerScript.jl",
+      "command": "julia",
+      "args" : [
+        "--startup-file=no",
+        "--history-file=no",
+        "--project",
+        "-e",
+        "using LanguageServer;\n       using Pkg;\n       import StaticLint;\n       import SymbolServer;\n       env_path = dirname(Pkg.Types.Context().env.project_file);\n       debug = false;\n       server = LanguageServer.LanguageServerInstance(stdin, stdout, debug, env_path, \"\", Dict());\n       server.runlinter = true;\n       run(server);"
+      ],
       "filetypes": ["julia"]
     }
   },
