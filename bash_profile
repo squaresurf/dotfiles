@@ -29,3 +29,6 @@ if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then . "$HOME/google-cloud-sdk
 
 # The next line enables shell command completion for gcloud.
 if [ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]; then . "$HOME/google-cloud-sdk/completion.bash.inc"; fi
+
+gdk_completion=$HOME/code/gitlab.com/gitlab-org/gitlab-development-kit/support/completions/gdk.bash
+if [ -f "$gdk_completion" ]; then . $gdk_completion; fi
