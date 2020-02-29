@@ -87,6 +87,7 @@ augroup filetypes
   autocmd BufNewFile,BufRead .eslintrc setlocal filetype=json
   autocmd BufNewFile,BufRead .envrc setlocal filetype=sh
   autocmd BufNewFile,BufRead *.m setlocal filetype=octave
+  autocmd BufNewFile,BufRead Dockerfile.* setlocal filetype=dockerfile
 augroup END
 
 augroup commentary
