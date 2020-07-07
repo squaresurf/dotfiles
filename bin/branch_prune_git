@@ -16,7 +16,7 @@ else
   main_branch=$1
 fi;
 
-delete_branch=$(git name-rev --name-only HEAD)
+delete_branch=$(git rev-parse --abbrev-ref HEAD)
 if [[ -z "$delete_branch" ]]; then
   echo "We couldn't figure out the branch to delete."
   exit 1
@@ -25,7 +25,7 @@ fi
 log "main_branch: $main_branch"
 log "delete_branch: $delete_branch"
 
-git fetch -p
 git checkout $main_branch
 git pull
+git remote prune origin
 git branch -d $delete_branch
