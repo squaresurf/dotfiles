@@ -108,7 +108,7 @@ export GOPATH="$HOME/code/go"
 export OCLINT_HOME="$HOME/bin/oclint-0.7-x86_64-apple-darwin-10"
 
 # User specific aliases and functions
-alias hpr='hub pull-request'
+alias t='tmux attach'
 alias la='ls -al'
 alias be='bundle exec'
 alias grep='grep --color'
@@ -209,14 +209,6 @@ if type kubectl &>/dev/null; then
   source <(kubectl completion bash)
 fi
 
-# stack autocompletion
-haskell_local_bin=""
-if [ -n "$(which stack)" ]; then
-  eval "$(stack --bash-completion-script stack)"
-
-  haskell_local_bin=$(stack path --local-bin)
-fi
-
 # This is in reverse order.
 paths=(
     /usr/local/sbin
@@ -226,7 +218,7 @@ paths=(
     $GOPATH/bin
     /usr/local/opt/openssl/bin
     /Library/TeX/texbin
-    $haskell_local_bin
+    $HOME/.local/bin # $haskell_local_bin
     $HOME/bin
 )
 
