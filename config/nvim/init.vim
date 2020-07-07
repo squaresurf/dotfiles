@@ -67,6 +67,10 @@ let g:maplocalleader = "\<space>\<space>"
 " force unix lineendings
 nnoremap <leader>u :e ++ff=unix<cr>
 
+" quick view of markdown
+nnoremap <leader>m :!pandoc % -o /tmp/$(basename %).pdf && open -a skim /tmp/$(basename %).pdf<cr>
+nnoremap <localleader>m :!pandoc % -o /tmp/$(basename %).html && open /tmp/$(basename %).html<cr>
+
 " Quick buffer changes
 nnoremap <leader>l :b#<cr>
 
@@ -87,12 +91,14 @@ augroup filetypes
   autocmd BufNewFile,BufRead .eslintrc setlocal filetype=json
   autocmd BufNewFile,BufRead .envrc setlocal filetype=sh
   autocmd BufNewFile,BufRead *.m setlocal filetype=octave
+  autocmd BufNewFile,BufRead *.mmd setlocal filetype=mermaid
   autocmd BufNewFile,BufRead Dockerfile.* setlocal filetype=dockerfile
 augroup END
 
 augroup commentary
   autocmd!
   autocmd FileType octave setlocal commentstring=%\ %s
+  autocmd FileType mermaid setlocal commentstring=%%\ %s
 augroup END
 
 " Turbux
@@ -271,12 +277,20 @@ nnoremap <silent> <leader>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <localleader>p  :<C-u>CocListResume<CR>
 
-""" Language Specific Things """
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
-autocmd BufWritePre *.go :GoLint
-
 """"""""""" Plugins """"""""""""""
 " Requires CocInstall coc-prettier and format on save config.
 command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 
 """"""""""" END Coc stuff """""""""""""""""""""""
+
+""" Language Specific Things """
+
+""""" Go
+let g:go_fmt_options = {
+  \ 'goimports': '-local gitlab.com/gitlab-org',
+  \ }
+autocmd BufWritePre *.go :GoImports
+autocmd BufWritePre *.go :GoLint
+
+""""" Rust
+nnoremap <leader>r :RustRun<cr>
