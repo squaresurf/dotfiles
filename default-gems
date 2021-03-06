@@ -1,5 +1,4 @@
 bundler
-gitlab-development-kit
 pry
 rake
 rubocop
