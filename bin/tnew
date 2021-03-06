@@ -1,5 +1,9 @@
 #!/bin/bash
-sess_name=$(basename $(pwd) | sed "s/\./_dot_/g")
+
+sess_name=$1
+if [[ -z "$sess_name" ]]; then
+  sess_name=$(basename $(pwd) | sed "s/\./_dot_/g")
+fi
 
 exists=$(tmux list-sessions | grep "^$sess_name:")
 if [[ -n "$exists" ]]; then

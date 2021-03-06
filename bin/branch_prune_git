@@ -28,4 +28,4 @@ log "delete_branch: $delete_branch"
 git checkout $main_branch
 git pull
 git remote prune origin
-git branch -d $delete_branch
+git branch -D $delete_branch
