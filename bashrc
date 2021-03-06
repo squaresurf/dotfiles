@@ -3,6 +3,11 @@ if [ -f /etc/bashrc ]; then
   source /etc/bashrc
 fi
 
+export EDITOR="nvim"
+export LANG=en_US.UTF-8
+export LC_ALL=$LANG
+export HISTCONTROL='ignoreboth:erasedups'
+
 RESET='\e[0;0m'
 RED='\e[0;31m'
 GREEN='\e[0;32m'
@@ -92,32 +97,11 @@ exit_status_prompt() {
 PS1="\[$BLUE\]\u\[$RESET\]@\h \[$BLUE\]\w \n\[$GREEN\]\$ \[$RESET\]"
 PROMPT_COMMAND="exit_status_prompt; date_prompt; git_prompt;"
 
-# Fix backspace
-stty erase '^?'
-
-# Fix tmux <c-h>
-export TERMINFO="$HOME/.terminfo"
-
-# Fix gpg-agent
-export GPG_TTY=`tty`
-
 # Go Lang
 export GOPATH="$HOME/code/go"
 
-# C
-export OCLINT_HOME="$HOME/bin/oclint-0.7-x86_64-apple-darwin-10"
-
 # User specific aliases and functions
 alias t='tmux attach'
-alias la='ls -al'
-alias be='bundle exec'
-alias grep='grep --color'
-alias curlinfo='curl -w "url_effective:\t\t%{url_effective}\nhttp_code:\t\t%{http_code}\nhttp_connect:\t\t%{http_connect}\ntime_total:\t\t%{time_total}\ntime_namelookup:\t%{time_namelookup}\ntime_connect:\t\t%{time_connect}\ntime_pretransfer:\t%{time_pretransfer}\ntime_redirect:\t\t%{time_redirect}\ntime_starttransfer:\t%{time_starttransfer}\nsize_download:\t\t%{size_download}\nsize_upload:\t\t%{size_upload}\nsize_header:\t\t%{size_header}\nsize_request:\t\t%{size_request}\nspeed_download:\t\t%{speed_download}\nspeed_upload:\t\t%{speed_upload}\ncontent_type:\t\t%{content_type}\nnum_connects:\t\t%{num_connects}\nnum_redirects:\t\t%{num_redirects}\nftp_entry_path:\t\t%{ftp_entry_path}\n" -o /dev/null -s'
-
-export EDITOR="nvim"
-export LANG=en_US.UTF-8
-export LC_ALL=$LANG
-export HISTCONTROL='ignoreboth:erasedups'
 
 export ERL_AFLAGS="-kernel shell_history enabled"
 
@@ -172,41 +156,15 @@ for key in ${keys[@]}; do
   fi
 done
 
-# Mac Aliases
-if [[ "$(uname -s)" == "Darwin" ]]; then
-  alias ls='ls -G'
-  alias stat='stat -x'
-fi
-
 # fasd
-eval "$(fasd --init auto)"
-alias v='f -e nvim'
+if [ -n "$(which fasd)" ]; then
+  eval "$(fasd --init auto)"
+  alias v='f -e nvim'
+fi
 
 # direnv
 if [ -n "$(which direnv)" ]; then
   eval "$(direnv hook bash)"
-fi
-
-# brew autocompletions
-if type brew &>/dev/null; then
-  HOMEBREW_PREFIX="$(brew --prefix)"
-  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
-    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-  else
-    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
-      [[ -r "$COMPLETION" ]] && source "$COMPLETION"
-    done
-  fi
-fi
-
-# lab autocompletions
-if type lab &>/dev/null; then
-  source <(lab completion bash)
-fi
-
-# kubectl autocompletion
-if type kubectl &>/dev/null; then
-  source <(kubectl completion bash)
 fi
 
 # This is in reverse order.
