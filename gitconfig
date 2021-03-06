@@ -35,6 +35,8 @@
   process = git-lfs filter-process
   required = true
 [gpg]
-	program = /usr/local/bin/gpg
+  program = gpg
 [pull]
-	ff = only
+  ff = only
+[init]
+  defaultBranch = main
