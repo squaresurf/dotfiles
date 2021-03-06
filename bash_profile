@@ -18,17 +18,23 @@ if [ -d ~/.asdf ]; then
   source $HOME/.asdf/completions/asdf.bash
 fi
 
-export PATH="$HOME/.cargo/bin:$PATH"
-
-export PATH="$HOME/.poetry/bin:$PATH"
-
-export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig:$PKG_CONFIG_PATH"
-
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then . "$HOME/google-cloud-sdk/path.bash.inc"; fi
+if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then source "$HOME/google-cloud-sdk/path.bash.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]; then . "$HOME/google-cloud-sdk/completion.bash.inc"; fi
+if [ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]; then source "$HOME/google-cloud-sdk/completion.bash.inc"; fi
 
 gdk_completion=$HOME/code/gitlab.com/gitlab-org/gitlab-development-kit/support/completions/gdk.bash
-if [ -f "$gdk_completion" ]; then . $gdk_completion; fi
+if [ -f "$gdk_completion" ]; then source $gdk_completion; fi
+
+cargo_env=$HOME/.cargo/env
+if [ -f "$cargo_env" ]; then source "$cargo_env"; fi
+
+# brew autocompletions
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && source "/usr/local/etc/profile.d/bash_completion.sh"
+
+# kubectl autocompletion
+if type kubectl &>/dev/null; then
+  source <(kubectl completion bash)
+fi
+
