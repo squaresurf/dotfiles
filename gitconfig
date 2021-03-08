@@ -1,7 +1,7 @@
 [user]
   name = Daniel Paul Searles
-  email = dsearles@gitlab.com
-  signingkey = D7AE9A51A8B7A56A1A0F4CD92208BDD3DB9C2095
+	email = daniel.paul.searles@gmail.com
+	signingKey = 376B6A7AB07878BC479FEFB0BC25C53464EAA50B
 [color]
   ui = true
 [core]
@@ -40,3 +40,5 @@
   ff = only
 [init]
   defaultBranch = main
+[includeIf "gitdir:~/code/gitlab-org/"]
+  path = ~/.gitconfig-gitlab
