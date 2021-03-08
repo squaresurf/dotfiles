@@ -1,5 +1,5 @@
 #!/bin/bash
 
 dirpath=$(dirname $0)
-cp $dirpath/rcrc $HOME/.rcrc
+cp $dirpath/tag-mac/rcrc $HOME/.rcrc
 rcup -v
