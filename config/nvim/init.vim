@@ -36,6 +36,10 @@ scriptencoding utf8
 syntax on
 colorscheme seoul256
 
+" Transparent background
+hi Normal guibg=NONE ctermbg=NONE
+
+" set background=light
 set backspace=indent,eol,start
 set cursorline
 set expandtab
@@ -68,8 +72,8 @@ let g:maplocalleader = "\<space>\<space>"
 nnoremap <leader>u :e ++ff=unix<cr>
 
 " quick view of markdown
-nnoremap <leader>m :!pandoc % -o /tmp/$(basename %).pdf && open -a skim /tmp/$(basename %).pdf<cr>
-nnoremap <localleader>m :!pandoc % -o /tmp/$(basename %).html && open /tmp/$(basename %).html<cr>
+nnoremap <leader>m :!pandoc % -s -o /tmp/$(basename %).pdf && open -a skim /tmp/$(basename %).pdf<cr>
+nnoremap <localleader>m :!pandoc % -s -o /tmp/$(basename %).html && open /tmp/$(basename %).html<cr>
 
 " Quick buffer changes
 nnoremap <leader>l :b#<cr>
@@ -87,11 +91,12 @@ vmap <leader>P "+P
 
 augroup filetypes
   autocmd!
-  autocmd BufNewFile,BufRead Capfile,Gemfile,Berksfile,Vagrantfile,Guardfile setlocal filetype=ruby
-  autocmd BufNewFile,BufRead .eslintrc setlocal filetype=json
-  autocmd BufNewFile,BufRead .envrc setlocal filetype=sh
   autocmd BufNewFile,BufRead *.m setlocal filetype=octave
   autocmd BufNewFile,BufRead *.mmd setlocal filetype=mermaid
+  autocmd BufNewFile,BufRead *.sarif setlocal filetype=json
+  autocmd BufNewFile,BufRead .envrc setlocal filetype=sh
+  autocmd BufNewFile,BufRead .eslintrc setlocal filetype=json
+  autocmd BufNewFile,BufRead Capfile,Gemfile,Berksfile,Vagrantfile,Guardfile setlocal filetype=ruby
   autocmd BufNewFile,BufRead Dockerfile.* setlocal filetype=dockerfile
 augroup END
 
@@ -284,6 +289,9 @@ command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 """"""""""" END Coc stuff """""""""""""""""""""""
 
 """ Language Specific Things """
+
+""""" LaTeX
+let g:tex_flavor = 'latex'
 
 """"" Go
 let g:go_fmt_options = {
