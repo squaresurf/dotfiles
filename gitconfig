@@ -42,3 +42,5 @@
   defaultBranch = main
 [includeIf "gitdir:~/code/gitlab-org/"]
   path = ~/.gitconfig-gitlab
+[includeIf "gitdir:~/code/gitlab-com/"]
+  path = ~/.gitconfig-gitlab
