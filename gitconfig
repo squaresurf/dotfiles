@@ -44,3 +44,5 @@
   path = ~/.gitconfig-gitlab
 [includeIf "gitdir:~/code/gitlab-com/"]
   path = ~/.gitconfig-gitlab
+[includeIf "gitdir:~/code/gitlab-dsearles/"]
+  path = ~/.gitconfig-gitlab
