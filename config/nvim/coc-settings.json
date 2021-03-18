@@ -13,10 +13,6 @@
   "diagnostic.enableSign": true,
   "diagnostic.maxWindowHeight": 80,
   "languageserver": {
-    "elixirLS": {
-      "command": "~/LanguageServers/elixir-ls/language_server.sh",
-      "filetypes": ["elixir", "eelixir"]
-    },
     "elmLS": {
       "command": "elm-language-server",
       "args": ["--stdio"],

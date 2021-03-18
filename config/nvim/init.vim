@@ -3,6 +3,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'benmills/vimux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'jgdavey/vim-turbux'
 Plug 'junegunn/fzf'
