@@ -4,9 +4,6 @@ stty erase '^?'
 # Fix tmux <c-h>
 export TERMINFO="$HOME/.terminfo"
 
-# Fix gpg-agent
-export GPG_TTY=`tty`
-
 alias ls='ls -G'
 alias stat='stat -x'
 
