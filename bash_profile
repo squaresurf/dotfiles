@@ -8,19 +8,29 @@ if [ -f ~/.bashrc ]; then
     source ~/.bashrc
 fi
 
+if [ -f ~/.bashrc_arch ]; then
+    source ~/.bashrc_arch
+fi
+
 if [ -f ~/.bashrc_mac ]; then
     source ~/.bashrc_mac
 fi
 
 # Output my dotfiles status
 printf "dotfiles status: $(cd $HOME/.dotfiles/ && git_prompt)\n"
-printf "dotfiles-secret status: $(cd $HOME/.dotfiles-secret/ && git_prompt)\n"
 
-# Load up asdf
-if [ -d ~/.asdf ]; then
+# asdf start - - - - - - - - - -
+## mac setup TODO move this to mac bash
+if [ -f ~/.asdf/asdf.sh ]; then
   source $HOME/.asdf/asdf.sh
   source $HOME/.asdf/completions/asdf.bash
 fi
+
+## arch setup
+if [ -d /opt/asdf-vm ]; then
+  source /opt/asdf-vm/asdf.sh
+fi
+# asdf end - - - - - - - - - -
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then source "$HOME/google-cloud-sdk/path.bash.inc"; fi

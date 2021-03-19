@@ -1,3 +1,6 @@
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
   source /etc/bashrc
@@ -103,6 +106,9 @@ export GOPATH="$HOME/code/go"
 # User specific aliases and functions
 alias t='tmux attach'
 
+# Fix gpg-agent
+export GPG_TTY=`tty`
+
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 export PGUSER=postgres
@@ -144,17 +150,19 @@ export RG_IGNORE='\
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow $RG_IGNORE"
 
 # Add ssh keys
-keys=(
-  id_rsa
-)
+if [ -n "$(ps ax | rg ssh-agent | rg -v rg)" ]; then
+  keys=(
+    id_rsa
+  )
 
-for key in ${keys[@]}; do
-  keyfile="$HOME/.ssh/$key"
-  pub_key=$(cat $HOME/.ssh/$key.pub | awk '{print $2}')
-  if [[ -f $keyfile && -z "$(ssh-add -L | grep $pub_key)" ]]; then
-    ssh-add $keyfile
-  fi
-done
+  for key in ${keys[@]}; do
+    keyfile="$HOME/.ssh/$key"
+    pub_key=$(cat $HOME/.ssh/$key.pub | awk '{print $2}')
+    if [[ -f $keyfile && -z "$(ssh-add -L | grep $pub_key)" ]]; then
+      ssh-add $keyfile
+    fi
+  done
+fi
 
 # fasd
 if [ -n "$(which fasd)" ]; then
@@ -171,7 +179,6 @@ fi
 paths=(
     /usr/local/sbin
     $HOME/Library/Haskell/bin
-    $OCLINT_HOME/bin
     /usr/local/go/bin
     $GOPATH/bin
     /usr/local/opt/openssl/bin
