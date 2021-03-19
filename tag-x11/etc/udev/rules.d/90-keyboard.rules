@@ -1,0 +1,7 @@
+# Bus 001 Device 014: ID 24f0:0140 Metadot Das Keyboard 4
+ATTRS{idVendor}=="24f0" \
+, ATTRS{idProduct}=="0140" \
+, ENV{DISPLAY}=":0" \
+, ENV{XAUTHORITY}="/home/daniel/.Xauthority"
+, RUN+="/home/daniel/.xinitrc.d/90-keyboard.sh"
+

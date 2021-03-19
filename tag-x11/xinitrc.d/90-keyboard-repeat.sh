@@ -1,2 +1,2 @@
 #!/bin/sh
-xset r rate 140 80
+xset r rate 180 60
