@@ -32,6 +32,8 @@ if [ -d $HOME/.xinitrc.d ] ; then
 fi
 
 ~/.fehbg &
+unclutter &
 xscreensaver -no-splash &
+
 eval $(ssh-agent)
 exec xmonad
