@@ -7,6 +7,7 @@
     "javascript",
     "json",
     "julia",
+    "python",
     "ruby",
     "rust"
   ],
@@ -55,6 +56,9 @@
       "filetypes": ["julia"]
     }
   },
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.formatting.provider": "black",
   "solargraph.useBundler": true,
   "solargraph.diagnostics": true,
   "solargraph.completion": true,
