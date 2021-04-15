@@ -49,7 +49,7 @@ set foldmethod=indent
 set hidden
 set ignorecase
 set list
-set listchars=tab:»\ ,eol:\¬
+" set listchars=tab:»\ ,eol:\¬
 set number
 set relativenumber
 set showcmd
