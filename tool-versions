@@ -1,11 +1,11 @@
-elixir 1.9.4-otp-22
-erlang 22.2.3
+elixir 1.11.4-otp-23
+erlang 23.3.1
 golang 1.15.1
 julia 1.4.2
 nodejs 12.13.1
 python 3.9.2
 ruby 2.6.5
 rebar 3.11.1
-yarn 1.21.0
+yarn 1.22.10
 postgres 10.11
 redis 5.0.7

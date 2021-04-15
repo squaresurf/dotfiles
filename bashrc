@@ -117,6 +117,9 @@ alias t='tmux attach'
 # Fix gpg-agent
 export GPG_TTY=`tty`
 
+# For building erlang
+export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac"
+
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 export PGUSER=postgres
