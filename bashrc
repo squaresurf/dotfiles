@@ -6,6 +6,14 @@ if [ -f /etc/bashrc ]; then
   source /etc/bashrc
 fi
 
+if [ -f ~/.bashrc_arch ]; then
+    source ~/.bashrc_arch
+fi
+
+if [ -f ~/.bashrc_mac ]; then
+    source ~/.bashrc_mac
+fi
+
 export EDITOR="nvim"
 export LANG=en_US.UTF-8
 export LC_ALL=$LANG
@@ -177,6 +185,7 @@ fi
 
 # This is in reverse order.
 paths=(
+    $HOME/.poetry/bin
     /usr/local/sbin
     $HOME/Library/Haskell/bin
     /usr/local/go/bin

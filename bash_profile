@@ -7,11 +7,3 @@ fi
 if [ -f ~/.bashrc ]; then
     source ~/.bashrc
 fi
-
-if [ -f ~/.bashrc_arch ]; then
-    source ~/.bashrc_arch
-fi
-
-if [ -f ~/.bashrc_mac ]; then
-    source ~/.bashrc_mac
-fi
