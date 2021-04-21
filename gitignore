@@ -23,3 +23,6 @@ daniel_*.php
 
 # LanguageServer Caches
 .elixir_ls/
+
+# Python
+__pycache__/
