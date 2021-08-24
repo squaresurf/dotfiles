@@ -154,6 +154,7 @@ export RG_IGNORE='\
   --glob "!node_modules/*" \
   --glob "!serverless/lib/*" \
   --glob "!tags" \
+  --glob "!target/*" \
   --glob "!tmp/*" \
 '
 export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow $RG_IGNORE"
