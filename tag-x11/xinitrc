@@ -33,7 +33,7 @@ fi
 
 ~/.fehbg &
 unclutter &
-xscreensaver -no-splash &
+# xscreensaver -no-splash &
 
 eval $(ssh-agent)
 exec xmonad
