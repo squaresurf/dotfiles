@@ -122,8 +122,6 @@ export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac"
 
 export ERL_AFLAGS="-kernel shell_history enabled"
 
-export PGUSER=postgres
-
 export RG_IGNORE='\
   --glob "!**/*.egg-info/*" \
   --glob "!**/*.pyc" \
