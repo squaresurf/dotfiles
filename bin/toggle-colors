@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+perl -pi -e 's/(^colors: .*)/## \1/' ~/.config/alacritty/alacritty.yml
+perl -pi -e 's/^# (colors: .*)/\1/' ~/.config/alacritty/alacritty.yml
+perl -pi -e 's/^## (colors: .*)/# \1/' ~/.config/alacritty/alacritty.yml
+
+perl -pi -e 's/(^colorscheme .*)/"" \1/' ~/.config/nvim/init.vim
+perl -pi -e 's/^" (colorscheme .*)/\1/' ~/.config/nvim/init.vim
+perl -pi -e 's/^"" (colorscheme .*)/" \1/' ~/.config/nvim/init.vim
