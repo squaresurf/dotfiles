@@ -37,7 +37,8 @@ call plug#end()
 scriptencoding utf8
 
 syntax on
-colorscheme seoul256
+" colorscheme seoul256
+colorscheme seoul256-light
 
 " Transparent background
 hi Normal guibg=NONE ctermbg=NONE
