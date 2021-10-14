@@ -235,3 +235,5 @@ if [ -f "$cargo_env" ]; then source "$cargo_env"; fi
 if type kubectl &>/dev/null; then
   source <(kubectl completion bash)
 fi
+
+if [ -f $HOME/.gitlabrc ]; then source $HOME/.gitlabrc; fi
