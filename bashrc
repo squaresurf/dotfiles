@@ -231,9 +231,4 @@ if [ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]; then source "$HOME/googl
 cargo_env=$HOME/.cargo/env
 if [ -f "$cargo_env" ]; then source "$cargo_env"; fi
 
-# kubectl autocompletion
-if type kubectl &>/dev/null; then
-  source <(kubectl completion bash)
-fi
-
 if [ -f $HOME/.gitlabrc ]; then source $HOME/.gitlabrc; fi
