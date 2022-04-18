@@ -210,12 +210,6 @@ done
 printf "dotfiles status: $(cd $HOME/.dotfiles/ && git_prompt)\n"
 
 # asdf start - - - - - - - - - -
-## mac setup TODO move this to mac bash
-if [ -f ~/.asdf/asdf.sh ]; then
-  source $HOME/.asdf/asdf.sh
-  source $HOME/.asdf/completions/asdf.bash
-fi
-
 ## arch setup
 if [ -d /opt/asdf-vm ]; then
   source /opt/asdf-vm/asdf.sh
