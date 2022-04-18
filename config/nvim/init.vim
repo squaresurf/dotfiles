@@ -3,9 +3,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'benmills/vimux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install --frozen-lockfile && yarn prepack'}
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'iamcco/coc-diagnostic', { 'do': 'yarn install --frozen-lockfile && yarn build' }
 Plug 'jgdavey/vim-turbux'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -14,7 +12,6 @@ Plug 'lervag/vimtex'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build' }
 Plug 'rizzatti/dash.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'shumphrey/fugitive-gitlab.vim'
@@ -37,13 +34,14 @@ call plug#end()
 scriptencoding utf8
 
 syntax on
-" colorscheme seoul256
-colorscheme seoul256-light
+colorscheme seoul256
+" colorscheme seoul256-light
 
 " Transparent background
 hi Normal guibg=NONE ctermbg=NONE
 
 " set background=light
+set conceallevel=2 " conceal markdown links
 set backspace=indent,eol,start
 set cursorline
 set expandtab
@@ -82,6 +80,7 @@ nnoremap <localleader>m :!pandoc % -s -o /tmp/$(basename %).html && open /tmp/$(
 " Quick buffer changes
 nnoremap <leader>l :b#<cr>
 
+nnoremap <leader>s :source ~/.config/nvim/init.vim<cr>
 nnoremap <leader>n :noh<cr>
 nnoremap <leader>d :Dash<cr>
 
@@ -95,6 +94,7 @@ vmap <leader>P "+P
 
 augroup filetypes
   autocmd!
+  autocmd BufNewFile,BufRead +*,todo.txt,todo-recur.txt setlocal filetype=markdown
   autocmd BufNewFile,BufRead *.m setlocal filetype=octave
   autocmd BufNewFile,BufRead *.mmd setlocal filetype=mermaid
   autocmd BufNewFile,BufRead *.sarif setlocal filetype=json
