@@ -46,3 +46,7 @@
   path = ~/.gitconfig-gitlab
 [includeIf "gitdir:~/code/gitlab-dsearles/"]
   path = ~/.gitconfig-gitlab
+[submodule]
+	recurse = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/

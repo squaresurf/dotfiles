@@ -1,0 +1,13 @@
+export GOPRIVATE=github.com/hashicorp
+
+# This is in reverse order.
+paths=(
+    $HOME/code/cloud-makefiles/bin
+    $HOME/code/cloud-sre/bin
+)
+
+for p in ${paths[@]}; do
+    if [[ -d $p ]]; then
+        export PATH="$p:$PATH";
+    fi
+done

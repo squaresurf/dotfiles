@@ -14,6 +14,10 @@ if [ -f ~/.bashrc_mac ]; then
     source ~/.bashrc_mac
 fi
 
+if [ -f ~/.bashrc_hashicorp ]; then
+    source ~/.bashrc_hashicorp
+fi
+
 export EDITOR="nvim"
 export LANG=en_US.UTF-8
 export LC_ALL=$LANG
