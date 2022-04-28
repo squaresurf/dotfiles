@@ -2,8 +2,8 @@ export GOPRIVATE=github.com/hashicorp
 
 # This is in reverse order.
 paths=(
-    $HOME/code/cloud-makefiles/bin
-    $HOME/code/cloud-sre/bin
+    $HOME/code/hashicorp/cloud-makefiles/bin
+    $HOME/code/hashicorp/cloud-sre/bin
 )
 
 for p in ${paths[@]}; do
@@ -11,3 +11,5 @@ for p in ${paths[@]}; do
         export PATH="$p:$PATH";
     fi
 done
+
+source ~/code/hashicorp/terraform-aws-cloud-bastion/tools/infra_tools.sh
