@@ -77,9 +77,6 @@ nnoremap <leader>u :e ++ff=unix<cr>
 nnoremap <leader>m :!pandoc % -s -o /tmp/$(basename %).pdf && open -a skim /tmp/$(basename %).pdf<cr>
 nnoremap <localleader>m :!pandoc % -s -o /tmp/$(basename %).html && open /tmp/$(basename %).html<cr>
 
-" Quick buffer changes
-nnoremap <leader>l :b#<cr>
-
 nnoremap <leader>s :source ~/.config/nvim/init.vim<cr>
 nnoremap <leader>n :noh<cr>
 nnoremap <leader>d :Dash<cr>
@@ -94,10 +91,11 @@ vmap <leader>P "+P
 
 augroup filetypes
   autocmd!
-  autocmd BufNewFile,BufRead +*,todo.txt,todo-recur.txt setlocal filetype=markdown
   autocmd BufNewFile,BufRead *.m setlocal filetype=octave
   autocmd BufNewFile,BufRead *.mmd setlocal filetype=mermaid
+  autocmd BufNewFile,BufRead *.nomad setlocal filetype=hcl
   autocmd BufNewFile,BufRead *.sarif setlocal filetype=json
+  autocmd BufNewFile,BufRead +*,todo.txt,todo-recur.txt setlocal filetype=markdown
   autocmd BufNewFile,BufRead .envrc setlocal filetype=sh
   autocmd BufNewFile,BufRead .eslintrc setlocal filetype=json
   autocmd BufNewFile,BufRead Capfile,Gemfile,Berksfile,Vagrantfile,Guardfile setlocal filetype=ruby
