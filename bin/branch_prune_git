@@ -11,7 +11,7 @@ log() {
 }
 
 if [[ -z "$1" ]]; then
-  main_branch='master'
+  main_branch='main'
 else
   main_branch=$1
 fi;
