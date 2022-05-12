@@ -1,6 +1,6 @@
 elixir 1.11.4-otp-23
 erlang 23.3.1
-golang 1.17.7
+golang 1.17.9
 julia 1.4.2
 nodejs 12.13.1
 python 3.9.8
