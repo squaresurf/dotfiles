@@ -34,8 +34,8 @@ call plug#end()
 scriptencoding utf8
 
 syntax on
-colorscheme seoul256
-" colorscheme seoul256-light
+" colorscheme seoul256
+colorscheme seoul256-light
 
 " Transparent background
 hi Normal guibg=NONE ctermbg=NONE
@@ -95,7 +95,7 @@ augroup filetypes
   autocmd BufNewFile,BufRead *.mmd setlocal filetype=mermaid
   autocmd BufNewFile,BufRead *.nomad setlocal filetype=hcl
   autocmd BufNewFile,BufRead *.sarif setlocal filetype=json
-  autocmd BufNewFile,BufRead +*,todo.txt,todo-recur.txt setlocal filetype=markdown
+  autocmd BufNewFile,BufRead +*,todo*.txt setlocal filetype=markdown
   autocmd BufNewFile,BufRead .envrc setlocal filetype=sh
   autocmd BufNewFile,BufRead .eslintrc setlocal filetype=json
   autocmd BufNewFile,BufRead Capfile,Gemfile,Berksfile,Vagrantfile,Guardfile setlocal filetype=ruby
@@ -296,11 +296,9 @@ command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 let g:tex_flavor = 'latex'
 
 """"" Go
-let g:go_fmt_options = {
-  \ 'goimports': '-local gitlab.com/gitlab-org',
-  \ }
 autocmd BufWritePre *.go :GoImports
-autocmd BufWritePre *.go :GoLint
+autocmd BufWritePre *.go :GoFmt
+" autocmd BufWritePre *.go :GoLint
 
 """"" Rust
 nnoremap <leader>r :RustRun<cr>
