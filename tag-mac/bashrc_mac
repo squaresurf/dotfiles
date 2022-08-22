@@ -16,4 +16,4 @@ if [[ -f "$(brew --prefix asdf)/libexec/asdf.sh" ]]; then
 fi
 
 # brew autocompletions
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && source "/usr/local/etc/profile.d/bash_completion.sh"
+[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
