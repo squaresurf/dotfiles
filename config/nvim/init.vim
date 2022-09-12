@@ -82,12 +82,12 @@ nnoremap <leader>n :noh<cr>
 nnoremap <leader>d :Dash<cr>
 
 " copy and paste with the system clipboard
-vmap <leader>y "+y
-vmap <leader>d "+d
-nmap <leader>p "+p
-nmap <leader>P "+P
-vmap <leader>p "+p
-vmap <leader>P "+P
+vnoremap <leader>y "+y
+vnoremap <leader>d "+d
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
 
 augroup filetypes
   autocmd!
