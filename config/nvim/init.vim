@@ -252,7 +252,10 @@ function! s:show_documentation()
 endfunction
 
 " Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup coc
+  autocmd!
+  autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup END
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
@@ -296,9 +299,15 @@ command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
 let g:tex_flavor = 'latex'
 
 """"" Go
-autocmd BufWritePre *.go :GoImports
-autocmd BufWritePre *.go :GoFmt
-" autocmd BufWritePre *.go :GoLint
+augroup go
+  autocmd!
+  autocmd BufWritePre *.go :GoImports
+  autocmd BufWritePre *.go :GoFmt
+  " autocmd BufWritePre *.go :GoLint
+augroup END
 
 """"" Rust
-nnoremap <leader>r :RustRun<cr>
+augroup rust
+  autocmd!
+  autocmd FileType rust nnoremap <buffer> <localleader>r :RustRun<cr>
+augroup END
