@@ -70,6 +70,9 @@ let g:loaded_python3_provider = 1
 let g:mapleader = "\<space>"
 let g:maplocalleader = "\<space>\<space>"
 
+" escape from terminal insert
+:tnoremap <Esc> <C-\><C-n>
+
 " force unix lineendings
 nnoremap <leader>u :e ++ff=unix<cr>
 
@@ -306,8 +309,9 @@ augroup go
   " autocmd BufWritePre *.go :GoLint
 augroup END
 
-""""" Rust
-augroup rust
+""""" Runners
+augroup runners
   autocmd!
   autocmd FileType rust nnoremap <buffer> <localleader>r :RustRun<cr>
+  autocmd FileType go nnoremap <buffer> <localleader>r :GoRun<cr>
 augroup END
