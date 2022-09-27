@@ -1,5 +1,6 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug '~/code/vision.vim'
 Plug 'benmills/vimux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
@@ -69,9 +70,6 @@ let g:loaded_python3_provider = 1
 " set leader to space
 let g:mapleader = "\<space>"
 let g:maplocalleader = "\<space>\<space>"
-
-" escape from terminal insert
-:tnoremap <Esc> <C-\><C-n>
 
 " force unix lineendings
 nnoremap <leader>u :e ++ff=unix<cr>
