@@ -1,6 +1,5 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug '~/code/vision.vim'
 Plug 'benmills/vimux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
@@ -28,6 +27,7 @@ Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
+Plug '~/code/vision.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -69,7 +69,7 @@ let g:loaded_python3_provider = 1
 
 " set leader to space
 let g:mapleader = "\<space>"
-let g:maplocalleader = "\<space>\<space>"
+let g:maplocalleader = "\<space>l"
 
 " force unix lineendings
 nnoremap <leader>u :e ++ff=unix<cr>
@@ -96,7 +96,6 @@ augroup filetypes
   autocmd BufNewFile,BufRead *.mmd setlocal filetype=mermaid
   autocmd BufNewFile,BufRead *.nomad setlocal filetype=hcl
   autocmd BufNewFile,BufRead *.sarif setlocal filetype=json
-  autocmd BufNewFile,BufRead +*,todo*.txt setlocal filetype=markdown
   autocmd BufNewFile,BufRead .envrc setlocal filetype=sh
   autocmd BufNewFile,BufRead .eslintrc setlocal filetype=json
   autocmd BufNewFile,BufRead Capfile,Gemfile,Berksfile,Vagrantfile,Guardfile setlocal filetype=ruby
