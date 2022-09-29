@@ -79,6 +79,7 @@ nnoremap <leader>m :!pandoc % -s -o /tmp/$(basename %).pdf && open -a skim /tmp/
 nnoremap <localleader>m :!pandoc % -s -o /tmp/$(basename %).html && open /tmp/$(basename %).html<cr>
 
 nnoremap <leader>s :source ~/.config/nvim/init.vim<cr>
+nnoremap <leader>S :vs ~/.config/nvim/init.vim<cr>
 nnoremap <leader>n :noh<cr>
 nnoremap <leader>d :Dash<cr>
 
