@@ -82,6 +82,7 @@ nnoremap <leader>s :source ~/.config/nvim/init.vim<cr>
 nnoremap <leader>S :vs ~/.config/nvim/init.vim<cr>
 nnoremap <leader>n :noh<cr>
 nnoremap <leader>d :Dash<cr>
+nnoremap <leader>l f(l
 
 " copy and paste with the system clipboard
 vnoremap <leader>y "+y
