@@ -41,7 +41,6 @@ colorscheme seoul256
 " Transparent background
 hi Normal guibg=NONE ctermbg=NONE
 
-" set background=light
 set conceallevel=2 " conceal markdown links
 set backspace=indent,eol,start
 set cursorline
@@ -51,7 +50,6 @@ set foldmethod=indent
 set hidden
 set ignorecase
 set list
-" set listchars=tab:»\ ,eol:\¬
 set number
 set relativenumber
 set showcmd
@@ -311,6 +309,6 @@ augroup END
 """"" Runners
 augroup runners
   autocmd!
-  autocmd FileType rust nnoremap <buffer> <localleader>r :RustRun<cr>
+  autocmd FileType rust nnoremap <buffer> <localleader>r :!cargo run<cr>
   autocmd FileType go nnoremap <buffer> <localleader>r :GoRun<cr>
 augroup END
