@@ -12,7 +12,6 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rizzatti/dash.vim'
-Plug 'shaunsingh/nord.nvim'
 Plug 'sheerun/vim-polyglot'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tpope/vim-commentary'
@@ -35,7 +34,6 @@ call plug#end()
 scriptencoding utf8
 
 syntax on
-colorscheme nord
 
 set conceallevel=2 " conceal markdown links
 set backspace=indent,eol,start
