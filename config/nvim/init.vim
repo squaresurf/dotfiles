@@ -7,12 +7,12 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'jgdavey/vim-turbux'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/seoul256.vim'
 Plug 'lervag/vimtex'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rizzatti/dash.vim'
+Plug 'shaunsingh/nord.nvim'
 Plug 'sheerun/vim-polyglot'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tpope/vim-commentary'
@@ -35,11 +35,7 @@ call plug#end()
 scriptencoding utf8
 
 syntax on
-colorscheme seoul256
-" colorscheme seoul256-light
-
-" Transparent background
-hi Normal guibg=NONE ctermbg=NONE
+colorscheme nord
 
 set conceallevel=2 " conceal markdown links
 set backspace=indent,eol,start
