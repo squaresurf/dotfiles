@@ -18,6 +18,10 @@ if [ -f ~/.bashrc_hashicorp ]; then
     source ~/.bashrc_hashicorp
 fi
 
+if [ -f ~/.bashrc_private ]; then
+    source ~/.bashrc_private
+fi
+
 export EDITOR="nvim"
 export LANG=en_US.UTF-8
 export LC_ALL=$LANG

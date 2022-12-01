@@ -1,3 +1,4 @@
+export GOLANG_PROTOBUF_REGISTRATION_CONFLICT=warn
 export GOPRIVATE=github.com/hashicorp
 export HCP_REPO_DIR=$HOME/code/hashicorp
 
