@@ -3,7 +3,6 @@ export HCP_REPO_DIR=$HOME/code/hashicorp
 
 # This is in reverse order.
 paths=(
-    $HOME/code/hashicorp/cloud-makefiles/bin
     $HOME/code/hashicorp/cloud-sre/bin
 )
 
