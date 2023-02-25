@@ -3,7 +3,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'benmills/vimux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'jgdavey/vim-turbux'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -125,18 +124,9 @@ nnoremap <localleader>/ :Rg
 """"" LaTeX
 let g:tex_flavor = 'latex'
 
-""""" Go
-augroup go
-  autocmd!
-  autocmd BufWritePre *.go :GoImports
-  autocmd BufWritePre *.go :GoFmt
-  " autocmd BufWritePre *.go :GoLint
-augroup END
-
 """"" Runners
 augroup runners
   autocmd!
   autocmd FileType rust nnoremap <buffer> <localleader>r :!cargo run<cr>
   autocmd FileType rust nnoremap <buffer> <localleader>R :!cargo test<cr>
-  autocmd FileType go nnoremap <buffer> <localleader>r :GoRun<cr>
 augroup END
