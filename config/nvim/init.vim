@@ -8,7 +8,6 @@ Plug 'jgdavey/vim-turbux'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'lervag/vimtex'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 Plug 'rizzatti/dash.vim'
 Plug 'shaunsingh/nord.nvim'
@@ -121,50 +120,6 @@ nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>/ :Rg<cr>
 nnoremap <localleader>/ :Rg
-
-" Tags
-let g:gutentags_ctags_exclude = [
-      \ "**/.direnv/*",
-      \ "**/.elixir_ls/*",
-      \ "**/.git/*",
-      \ "**/.hypothesis/*",
-      \ "**/.mypy_cache/*",
-      \ "**/.pytest_cache/*",
-      \ "**/.serverless/*",
-      \ "**/_build/*",
-      \ "**/client/node_modules/*",
-      \ "**/compiled/*",
-      \ "**/deps/*",
-      \ "**/dist/*",
-      \ "**/doc/*",
-      \ "**/elm-stuff/*",
-      \ "**/flow-typed/*",
-      \ "**/htmlcov/*",
-      \ "**/node_modules/*",
-      \ "**/serverless/lib/*",
-      \ "**/tests/elm-stuff/*",
-      \ "**/tmp/*",
-      \ ".direnv/*",
-      \ ".elixir_ls/*",
-      \ ".git/*",
-      \ ".hypothesis/*",
-      \ ".mypy_cache/*",
-      \ ".pytest_cache/*",
-      \ ".serverless/*",
-      \ "_build/*",
-      \ "client/node_modules/*",
-      \ "compiled/*",
-      \ "deps/*",
-      \ "dist/*",
-      \ "doc/*",
-      \ "elm-stuff/*",
-      \ "flow-typed/*",
-      \ "htmlcov/*",
-      \ "node_modules/*",
-      \ "serverless/lib/*",
-      \ "tests/elm-stuff/*",
-      \ "tmp/*"
-      \ ]
 
 let g:tagbar_left = 1
 let g:tagbar_autoclose = 1
