@@ -3,7 +3,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'benmills/vimux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'jgdavey/vim-turbux'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'lervag/vimtex'
@@ -57,7 +56,6 @@ set wildmode=longest,list,full
 let g:loaded_python_provider = 1
 let g:loaded_python3_provider = 1
 
-" set leader to space
 let g:mapleader = "\<space>"
 let g:maplocalleader = "\<space>l"
 
@@ -99,9 +97,6 @@ augroup commentary
   autocmd FileType octave setlocal commentstring=%\ %s
   autocmd FileType mermaid setlocal commentstring=%%\ %s
 augroup END
-
-" Turbux
-let g:turbux_command_prefix = 'bin/spring'
 
 " FZF
 set rtp+=/usr/local/opt/fzf
