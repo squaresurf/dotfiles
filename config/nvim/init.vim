@@ -6,7 +6,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'lervag/vimtex'
-Plug 'rizzatti/dash.vim'
 Plug 'shaunsingh/nord.nvim'
 Plug 'sheerun/vim-polyglot'
 Plug 'shumphrey/fugitive-gitlab.vim'
@@ -69,7 +68,6 @@ nnoremap <localleader>m :!pandoc % -s -o /tmp/$(basename %).html && open /tmp/$(
 nnoremap <leader>s :source ~/.config/nvim/init.vim<cr>
 nnoremap <leader>S :vs ~/.config/nvim/init.vim<cr>
 nnoremap <leader>n :noh<cr>
-nnoremap <leader>d :Dash<cr>
 nnoremap <leader>l f(l
 
 " copy and paste with the system clipboard
