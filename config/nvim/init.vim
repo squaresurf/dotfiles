@@ -8,7 +8,6 @@ Plug 'jgdavey/vim-turbux'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'lervag/vimtex'
-Plug 'majutsushi/tagbar'
 Plug 'rizzatti/dash.vim'
 Plug 'shaunsingh/nord.nvim'
 Plug 'sheerun/vim-polyglot'
@@ -120,29 +119,6 @@ nnoremap <leader>b :Buffers<cr>
 nnoremap <leader>f :Files<cr>
 nnoremap <leader>/ :Rg<cr>
 nnoremap <localleader>/ :Rg
-
-let g:tagbar_left = 1
-let g:tagbar_autoclose = 1
-let g:tagbar_autofocus = 1
-let g:tagbar_type_elixir = {
-    \ 'ctagstype' : 'elixir',
-    \ 'kinds' : [
-        \ 'f:functions',
-        \ 'functions:functions',
-        \ 'c:callbacks',
-        \ 'd:delegates',
-        \ 'e:exceptions',
-        \ 'i:implementations',
-        \ 'a:macros',
-        \ 'o:operators',
-        \ 'm:modules',
-        \ 'p:protocols',
-        \ 'r:records',
-        \ 't:tests'
-    \ ]
-\ }
-
-nnoremap <silent> <localleader>t  :TagbarToggle<cr>
 
 """ Language Specific Things """
 
