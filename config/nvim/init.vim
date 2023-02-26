@@ -65,6 +65,11 @@ nnoremap <leader>S :vs ~/.config/nvim/init.vim<cr>
 nnoremap <leader>n :noh<cr>
 nnoremap <leader>l f(l
 
+nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>f :Files<cr>
+nnoremap <leader>/ :Rg<cr>
+nnoremap <localleader>/ :Rg
+
 " copy and paste with the system clipboard
 vnoremap <leader>y "+y
 vnoremap <leader>d "+d
@@ -102,14 +107,6 @@ command! -bang -nargs=* Rg
       \   <bang>0)
       " \ 'rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow '.$RG_IGNORE.' --color "always" '.shellescape(<q-args>), 3, <bang>0)
 
-nnoremap <leader>b :Buffers<cr>
-nnoremap <leader>f :Files<cr>
-nnoremap <leader>/ :Rg<cr>
-nnoremap <localleader>/ :Rg
-
-""" Language Specific Things """
-
-""""" LaTeX
 let g:tex_flavor = 'latex'
 
 """"" Runners
