@@ -60,10 +60,6 @@ let g:maplocalleader = "\<space>l"
 " force unix lineendings
 nnoremap <leader>u :e ++ff=unix<cr>
 
-" quick view of markdown
-nnoremap <leader>m :!pandoc % -s -o /tmp/$(basename %).pdf && open -a skim /tmp/$(basename %).pdf<cr>
-nnoremap <localleader>m :!pandoc % -s -o /tmp/$(basename %).html && open /tmp/$(basename %).html<cr>
-
 nnoremap <leader>s :source ~/.config/nvim/init.vim<cr>
 nnoremap <leader>S :vs ~/.config/nvim/init.vim<cr>
 nnoremap <leader>n :noh<cr>
@@ -119,6 +115,8 @@ let g:tex_flavor = 'latex'
 """"" Runners
 augroup runners
   autocmd!
+  autocmd FileType markdown nnoremap <buffer> <localleader>r :!pandoc % -s -o /tmp/$(basename %).pdf && open -a skim /tmp/$(basename %).pdf<cr>
+  autocmd FileType markdown nnoremap <buffer> <localleader>R :!pandoc % -s -o /tmp/$(basename %).html && open /tmp/$(basename %).html<cr>
   autocmd FileType rust nnoremap <buffer> <localleader>r :!cargo run<cr>
   autocmd FileType rust nnoremap <buffer> <localleader>R :!cargo test<cr>
 augroup END
