@@ -147,7 +147,7 @@ lua <<EOF
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+    -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts) -- conflicts with my movement cmd
     vim.keymap.set('n', '<localleader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
     vim.keymap.set('n', '<localleader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
     vim.keymap.set('n', '<localleader>wl', function()
@@ -160,51 +160,34 @@ lua <<EOF
     vim.keymap.set('n', '<localleader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
   end
 
-  local lsp_flags = {
-    -- This is the default in Nvim 0.7+
-    debounce_text_changes = 150,
-  }
-  require('lspconfig')['pyright'].setup{
-      on_attach = on_attach,
-      flags = lsp_flags,
-  }
-  require('lspconfig')['tsserver'].setup{
-      on_attach = on_attach,
-      flags = lsp_flags,
-  }
-  require('lspconfig')['rust_analyzer'].setup{
-      on_attach = on_attach,
-      flags = lsp_flags,
-      -- Server-specific settings...
-      settings = {
-        ["rust-analyzer"] = {}
-      }
-  }
   -- END Suggested Config
   -----------------------
 
-  require("mason").setup()
-  require("mason-lspconfig").setup()
+  require('mason').setup()
+  require('mason-lspconfig').setup()
 
   -- All setup calls must set on_attach
-  require("lspconfig").gopls.setup{ on_attach = on_attach }
+  require('lspconfig').ember.setup{ on_attach = on_attach }
+  require('lspconfig').eslint.setup{ on_attach = on_attach }
+  require('lspconfig').gopls.setup{ on_attach = on_attach }
 
-  local null_ls = require("null-ls")
-  local path = require("plenary.path")
+  local null_ls = require('null-ls')
+  local path = require('plenary.path')
 
   null_ls.setup({
       sources = {
           null_ls.builtins.diagnostics.golangci_lint.with({
             extra_args = function(params)
-              local makefiles_config = ".modules/cloud-makefiles/golangci/config.yml"
+              local makefiles_config = '.modules/cloud-makefiles/golangci/config.yml'
               if path.new(makefiles_config):exists() then
-                return { "--config", makefiles_config }
+                return { '--config', makefiles_config }
               else
                 return {}
               end
             end
           }),
           null_ls.builtins.formatting.goimports,
+          null_ls.builtins.formatting.prettier,
       },
   })
 
