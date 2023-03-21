@@ -170,6 +170,7 @@ lua <<EOF
   require('lspconfig').ember.setup{ on_attach = on_attach }
   require('lspconfig').eslint.setup{ on_attach = on_attach }
   require('lspconfig').gopls.setup{ on_attach = on_attach }
+  require('lspconfig').rust_analyzer.setup{ on_attach = on_attach }
 
   local null_ls = require('null-ls')
   local path = require('plenary.path')
@@ -188,6 +189,7 @@ lua <<EOF
           }),
           null_ls.builtins.formatting.goimports,
           null_ls.builtins.formatting.prettier,
+          null_ls.builtins.formatting.rustfmt,
       },
   })
 
