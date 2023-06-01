@@ -171,6 +171,7 @@ export FZF_DEFAULT_COMMAND="rg --files --no-ignore --hidden --follow $RG_IGNORE"
 if [ -n "$(ps ax | rg ssh-agent | rg -v rg)" ]; then
   keys=(
     id_rsa
+    id_ed25519
   )
 
   for key in ${keys[@]}; do

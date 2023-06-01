@@ -120,6 +120,7 @@ augroup runners
   autocmd FileType markdown nnoremap <buffer> <localleader>R :!pandoc % -s -o /tmp/$(basename %).html && open /tmp/$(basename %).html<cr>
   autocmd FileType rust nnoremap <buffer> <localleader>r :!cargo run<cr>
   autocmd FileType rust nnoremap <buffer> <localleader>R :!cargo test<cr>
+  autocmd FileType go nnoremap <buffer> <localleader>r :!go run %<cr>
 augroup END
 
 " Mason | lsp | dap | linters | formatters
