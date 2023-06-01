@@ -12,6 +12,7 @@ Plug 'nvim-lua/plenary.nvim' " required by null-ls.nvim and used below
 Plug 'shaunsingh/nord.nvim'
 Plug 'sheerun/vim-polyglot'
 Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'terrastruct/d2-vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
