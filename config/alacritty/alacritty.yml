@@ -214,6 +214,35 @@ schemes:
       cyan:    '#8FBCBB'
       white:   '#ECEFF4'
 
+  # Colors (Nord Light)
+  nord: &nord_light
+    # Default colors
+    primary:
+      foreground: '#2E3440'
+      background: '#D8DEE9'
+
+    # Normal colors
+    normal:
+      black:   '#4C566A'
+      red:     '#BF616A'
+      green:   '#A3BE8C'
+      yellow:  '#EBCB8B'
+      blue:    '#81A1C1'
+      magenta: '#B48EAD'
+      cyan:    '#8FBCBB'
+      white:   '#ECEFF4'
+
+    # Bright colors
+    bright:
+      black:   '#3B4252'
+      red:     '#BF616A'
+      green:   '#A3BE8C'
+      yellow:  '#EBCB8B'
+      blue:    '#81A1C1'
+      magenta: '#B48EAD'
+      cyan:    '#88C0D0'
+      white:   '#E5E9F0'
+
   seoul256_dark: &seoul256_dark
     # Colors (Seoul256)
     primary:
@@ -310,7 +339,8 @@ schemes:
       cyan:    '#93a1a1' # base1
       white:   '#fdf6e3' # base3 white:   '#e4e4e4'
 
-colors: *nord
+# colors: *nord
+colors: *nord_light
 # colors: *seoul256_dark
 # colors: *solarized_light
 
