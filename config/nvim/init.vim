@@ -35,7 +35,8 @@ scriptencoding utf8
 
 syntax on
 colorscheme nord
-set bg=light
+" set bg=light
+set bg=dark
 
 set conceallevel=2 " conceal markdown links
 set backspace=indent,eol,start
