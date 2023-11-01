@@ -235,3 +235,6 @@ cargo_env=$HOME/.cargo/env
 if [ -f "$cargo_env" ]; then source "$cargo_env"; fi
 
 if [ -f $HOME/.gitlabrc ]; then source $HOME/.gitlabrc; fi
+
+# Postgres
+export PG_LOCAL=postgres://postgres:postgres@localhost
