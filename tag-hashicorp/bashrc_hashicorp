@@ -6,6 +6,7 @@ export HCP_REPO_DIR=$HOME/code/hashicorp
 paths=(
     $HOME/code/hashicorp/cloud-makefiles/bin
     $HOME/code/hashicorp/cloud-sre/bin
+    $HOME/Documents/wiki/bin
 )
 
 for p in ${paths[@]}; do
