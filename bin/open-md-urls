@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+while IFS= read -r line; do
+  link=$(echo $line | sed -rn 's@^.*\[(.*)\]\((.*)\).*$@\2@p')
+  open $link
+  printf '%s\n' "$line"
+done
