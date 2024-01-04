@@ -340,6 +340,7 @@ schemes:
       white:   '#fdf6e3' # base3 white:   '#e4e4e4'
 
 colors: *nord
+# colors: *nord
 # colors: *nord_light
 # colors: *seoul256_dark
 # colors: *solarized_light
