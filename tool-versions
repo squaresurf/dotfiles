@@ -2,7 +2,7 @@ elixir 1.11.4-otp-23
 erlang 23.3.1
 golang 1.20.6
 julia 1.4.2
-nodejs 16.16.0
+nodejs 21.4.0
 python 3.10.4
 ruby 2.6.5
 rebar 3.11.1
