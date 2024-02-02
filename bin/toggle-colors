@@ -2,8 +2,8 @@
 
 if [[ $1 == "light" ]]; then
   perl -pi -e 's/^set bg=dark$/set bg=light/' ~/.dotfiles/config/nvim/init.vim
-  perl -pi -e 's/^colors: \*nord$/colors: *nord_light/' ~/.dotfiles/config/alacritty/alacritty.yml
+  perl -pi -e 's/nord.toml", # colors/nord_light.toml", # colors/' ~/.config/alacritty/alacritty.toml
 else
   perl -pi -e 's/^set bg=light$/set bg=dark/' ~/.dotfiles/config/nvim/init.vim
-  perl -pi -e 's/^colors: \*nord_light$/colors: *nord/' ~/.dotfiles/config/alacritty/alacritty.yml
+  perl -pi -e 's/nord_light.toml", # colors/nord.toml", # colors/' ~/.config/alacritty/alacritty.toml
 fi

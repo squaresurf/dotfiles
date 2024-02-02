@@ -1,4 +1,4 @@
-COPY_ALWAYS="rcrc"
+COPY_ALWAYS="rcrc config/alacritty/alacritty.toml"
 DOTFILES_DIRS="$HOME/.dotfiles"
 EXCLUDES="README.md LICENSE install"
 TAGS="mac"
