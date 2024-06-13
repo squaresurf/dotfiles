@@ -196,6 +196,7 @@ fi
 
 # This is in reverse order.
 paths=(
+    /usr/local/opt/sqlite/bin
     $HOME/.poetry/bin
     /usr/local/sbin
     $HOME/Library/Haskell/bin
