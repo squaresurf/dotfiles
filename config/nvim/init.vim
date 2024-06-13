@@ -102,6 +102,7 @@ augroup commentary
   autocmd!
   autocmd FileType octave setlocal commentstring=%\ %s
   autocmd FileType mermaid setlocal commentstring=%%\ %s
+  autocmd FileType sql setlocal commentstring=--\ %s
 augroup END
 
 " FZF
