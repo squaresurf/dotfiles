@@ -1,3 +1,11 @@
+
+[cursor]
+style = "Beam"
+
+[font]
+size = 14.0
+
+[general]
 import = [
 # "~/.config/alacritty/nord_light.toml", # colors
 # "~/.config/alacritty/nord.toml",
@@ -6,9 +14,3 @@ import = [
 # "~/.config/alacritty/solarized_light.toml",
 # "~/.config/alacritty/solarized_dark.toml",
 ]
-
-[cursor]
-style = "Beam"
-
-[font]
-size = 14.0
