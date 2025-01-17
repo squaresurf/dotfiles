@@ -7,9 +7,9 @@ size = 14.0
 
 [general]
 import = [
-# "~/.config/alacritty/nord_light.toml", # colors
+  "~/.config/alacritty/nord_light.toml", # colors
 # "~/.config/alacritty/nord.toml",
-"~/.config/alacritty/nord_light.toml",
+# "~/.config/alacritty/nord_light.toml",
 # "~/.config/alacritty/seoul256_dark.toml",
 # "~/.config/alacritty/solarized_light.toml",
 # "~/.config/alacritty/solarized_dark.toml",
