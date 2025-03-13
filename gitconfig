@@ -39,12 +39,8 @@
   ff = only
 [init]
   defaultBranch = main
-[includeIf "gitdir:~/code/gitlab-org/"]
-  path = ~/.gitconfig-gitlab
-[includeIf "gitdir:~/code/gitlab-com/"]
-  path = ~/.gitconfig-gitlab
-[includeIf "gitdir:~/code/gitlab-dsearles/"]
-  path = ~/.gitconfig-gitlab
+[includeIf "gitdir:~/code/taxa-ai/"]
+  path = ~/.gitconfig-taxa
 [submodule]
 	recurse = true
 [url "git@github.com:"]
