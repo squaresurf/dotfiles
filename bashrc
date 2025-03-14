@@ -14,8 +14,8 @@ if [ -f ~/.bashrc_mac ]; then
     source ~/.bashrc_mac
 fi
 
-if [ -f ~/.bashrc_hashicorp ]; then
-    source ~/.bashrc_hashicorp
+if [ -f ~/.bashrc_aiwyn ]; then
+    source ~/.bashrc_aiwyn
 fi
 
 if [ -f ~/.bashrc_private ]; then
