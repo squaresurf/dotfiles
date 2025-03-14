@@ -1,9 +1,9 @@
-
 z() {
   declare -A shortcuts=(
     ["fe"]="$HOME/code/taxa-ai/Taxa-Frontend"
     ["be"]="$HOME/code/taxa-ai/taxa-backend"
     ["dot"]="$HOME/.dotfiles"
+    ["wiki"]="$HOME/Documents/wiki-taxa"
   )
 
   d=${shortcuts[$1]}
