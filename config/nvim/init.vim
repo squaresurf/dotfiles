@@ -118,6 +118,8 @@ command! -bang -nargs=* Rg
 
 let g:tex_flavor = 'latex'
 
+iabbrev <expr> <buffer> ;d strftime("%Y-%m-%d")
+
 " Runners
 augroup runners
   autocmd!
