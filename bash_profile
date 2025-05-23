@@ -7,3 +7,6 @@ fi
 if [ -f ~/.bashrc ]; then
     source ~/.bashrc
 fi
+
+# PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
