@@ -175,6 +175,7 @@ lua <<EOF
   require('mason-lspconfig').setup()
 
   -- All setup calls must set on_attach
+  require('lspconfig').elixirls.setup{ on_attach = on_attach }
   require('lspconfig').ember.setup{ on_attach = on_attach }
   require('lspconfig').eslint.setup{ on_attach = on_attach }
   require('lspconfig').gopls.setup{ on_attach = on_attach }
