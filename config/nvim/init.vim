@@ -62,14 +62,15 @@ set wildmode=longest,list,full
 let g:loaded_python_provider = 1
 let g:loaded_python3_provider = 1
 
-let g:mapleader = "\<space>"
-let g:maplocalleader = "\<space>l"
+" MIGRATED TO INIT.LUA: Leader key settings
+" let g:mapleader = "\<space>"
+" let g:maplocalleader = "\<space>l"
 
 " force unix lineendings
 nnoremap <leader>u :e ++ff=unix<cr>
 
-nnoremap <leader>s :source ~/.config/nvim/init.vim<cr>
-nnoremap <leader>S :vs ~/.config/nvim/init.vim<cr>
+nnoremap <leader>s :source ~/.config/nvim/init.lua<cr>
+nnoremap <leader>S :vs ~/.config/nvim/init.lua<cr>
 nnoremap <leader>n :noh<cr>
 nnoremap <leader>l f(l
 
@@ -121,41 +122,42 @@ let g:tex_flavor = 'latex'
 iabbrev <expr> <buffer> ;d strftime("%Y-%m-%d")
 
 " MCP Copy
-lua <<EOF
--- Function to convert local file path to MCP server path
-local function copy_mcp_path()
-  local filepath = vim.fn.expand('%:p')
-
-  -- Resolve symlinks to get the real path
-  local real_filepath = vim.fn.resolve(filepath)
-  local mcp_path = nil
-
-  -- Convert based on your mount points (check both original and resolved paths)
-  if string.match(filepath, '^/Users/daniel/%.dotfiles/') then
-    mcp_path = string.gsub(filepath, '^/Users/daniel/%.dotfiles/', '/dotfiles/')
-  elseif string.match(real_filepath, '^/Users/daniel/%.dotfiles/') then
-    mcp_path = string.gsub(real_filepath, '^/Users/daniel/%.dotfiles/', '/dotfiles/')
-  elseif string.match(filepath, '^/Users/daniel/code/') then
-    mcp_path = string.gsub(filepath, '^/Users/daniel/code/', '/code/')
-  elseif string.match(real_filepath, '^/Users/daniel/code/') then
-    mcp_path = string.gsub(real_filepath, '^/Users/daniel/code/', '/code/')
-  else
-    vim.notify("File is not in a mounted directory accessible to Claude MCP server\nOriginal: " .. filepath .. "\nResolved: " .. real_filepath, vim.log.levels.WARN)
-    return
-  end
-
-  -- Copy to system clipboard
-  vim.fn.setreg('+', mcp_path)
-  vim.notify("Copied MCP path: " .. mcp_path, vim.log.levels.INFO)
-end
-
--- Create user command
-vim.api.nvim_create_user_command('CopyMCPPath', copy_mcp_path, {
-  desc = 'Copy current file path in format for Claude MCP filesystem server'
-})
-
-vim.keymap.set('n', '<leader>cp', copy_mcp_path, { desc = 'Copy MCP path' })
-EOF
+" MIGRATED TO INIT.LUA: MCP Copy functionality
+" lua <<EOF
+" -- Function to convert local file path to MCP server path
+" local function copy_mcp_path()
+"   local filepath = vim.fn.expand('%:p')
+"
+"   -- Resolve symlinks to get the real path
+"   local real_filepath = vim.fn.resolve(filepath)
+"   local mcp_path = nil
+"
+"   -- Convert based on your mount points (check both original and resolved paths)
+"   if string.match(filepath, '^/Users/daniel/%.dotfiles/') then
+"     mcp_path = string.gsub(filepath, '^/Users/daniel/%.dotfiles/', '/dotfiles/')
+"   elseif string.match(real_filepath, '^/Users/daniel/%.dotfiles/') then
+"     mcp_path = string.gsub(real_filepath, '^/Users/daniel/%.dotfiles/', '/dotfiles/')
+"   elseif string.match(filepath, '^/Users/daniel/code/') then
+"     mcp_path = string.gsub(filepath, '^/Users/daniel/code/', '/code/')
+"   elseif string.match(real_filepath, '^/Users/daniel/code/') then
+"     mcp_path = string.gsub(real_filepath, '^/Users/daniel/code/', '/code/')
+"   else
+"     vim.notify("File is not in a mounted directory accessible to Claude MCP server\nOriginal: " .. filepath .. "\nResolved: " .. real_filepath, vim.log.levels.WARN)
+"     return
+"   end
+"
+"   -- Copy to system clipboard
+"   vim.fn.setreg('+', mcp_path)
+"   vim.notify("Copied MCP path: " .. mcp_path, vim.log.levels.INFO)
+" end
+"
+" -- Create user command
+" vim.api.nvim_create_user_command('CopyMCPPath', copy_mcp_path, {
+"   desc = 'Copy current file path in format for Claude MCP filesystem server'
+" })
+"
+" vim.keymap.set('n', '<leader>cp', copy_mcp_path, { desc = 'Copy MCP path' })
+" EOF
 
 " Runners
 augroup runners
