@@ -6,7 +6,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' l'
 
 -- Source the existing vimscript configuration
-vim.cmd('source ~/.config/nvim/init.vim')
+vim.cmd('source ~/.config/nvim/oldinit.vim')
 
 -- TODO: Migrate sections one by one:
 -- [ ] Basic settings (vim options)
@@ -21,7 +21,6 @@ vim.cmd('source ~/.config/nvim/init.vim')
 
 -- MIGRATED: MCP Copy functionality
 -- Function to convert local file path to MCP server path
-print("About to define copy_mcp_path function")
 function copy_mcp_path()
   local filepath = vim.fn.expand('%:p')
 
