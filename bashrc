@@ -195,6 +195,7 @@ fi
 
 # This is in reverse order.
 paths=(
+    /opt/homebrew/opt/openjdk/bin
     /usr/local/opt/sqlite/bin
     $HOME/.poetry/bin
     /usr/local/sbin

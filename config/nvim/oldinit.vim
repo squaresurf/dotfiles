@@ -119,45 +119,7 @@ command! -bang -nargs=* Rg
 
 let g:tex_flavor = 'latex'
 
-iabbrev <expr> <buffer> ;d strftime("%Y-%m-%d")
-
-" MCP Copy
-" MIGRATED TO INIT.LUA: MCP Copy functionality
-" lua <<EOF
-" -- Function to convert local file path to MCP server path
-" local function copy_mcp_path()
-"   local filepath = vim.fn.expand('%:p')
-"
-"   -- Resolve symlinks to get the real path
-"   local real_filepath = vim.fn.resolve(filepath)
-"   local mcp_path = nil
-"
-"   -- Convert based on your mount points (check both original and resolved paths)
-"   if string.match(filepath, '^/Users/daniel/%.dotfiles/') then
-"     mcp_path = string.gsub(filepath, '^/Users/daniel/%.dotfiles/', '/dotfiles/')
-"   elseif string.match(real_filepath, '^/Users/daniel/%.dotfiles/') then
-"     mcp_path = string.gsub(real_filepath, '^/Users/daniel/%.dotfiles/', '/dotfiles/')
-"   elseif string.match(filepath, '^/Users/daniel/code/') then
-"     mcp_path = string.gsub(filepath, '^/Users/daniel/code/', '/code/')
-"   elseif string.match(real_filepath, '^/Users/daniel/code/') then
-"     mcp_path = string.gsub(real_filepath, '^/Users/daniel/code/', '/code/')
-"   else
-"     vim.notify("File is not in a mounted directory accessible to Claude MCP server\nOriginal: " .. filepath .. "\nResolved: " .. real_filepath, vim.log.levels.WARN)
-"     return
-"   end
-"
-"   -- Copy to system clipboard
-"   vim.fn.setreg('+', mcp_path)
-"   vim.notify("Copied MCP path: " .. mcp_path, vim.log.levels.INFO)
-" end
-"
-" -- Create user command
-" vim.api.nvim_create_user_command('CopyMCPPath', copy_mcp_path, {
-"   desc = 'Copy current file path in format for Claude MCP filesystem server'
-" })
-"
-" vim.keymap.set('n', '<leader>cp', copy_mcp_path, { desc = 'Copy MCP path' })
-" EOF
+iabbrev <expr> ;d strftime("%Y-%m-%d")
 
 " Runners
 augroup runners
@@ -214,9 +176,17 @@ lua <<EOF
   require('mason-lspconfig').setup()
 
   -- All setup calls must set on_attach
+  -- :help lspconfig-all
   require('lspconfig').elixirls.setup{ on_attach = on_attach }
-  require('lspconfig').ember.setup{ on_attach = on_attach }
-  require('lspconfig').eslint.setup{ on_attach = on_attach }
+  require('lspconfig').pyright.setup{ on_attach = on_attach }
+  require('lspconfig').ruff.setup{
+    on_attach = on_attach,
+    init_options = {
+      settings = {
+        organizeImports = true
+      }
+    }
+  }
   require('lspconfig').gopls.setup{ on_attach = on_attach }
   require('lspconfig').rust_analyzer.setup{ on_attach = on_attach }
 
@@ -225,16 +195,6 @@ lua <<EOF
 
   null_ls.setup({
       sources = {
-          null_ls.builtins.diagnostics.golangci_lint.with({
-            extra_args = function(params)
-              local makefiles_config = '.modules/cloud-makefiles/golangci/config.yml'
-              if path.new(makefiles_config):exists() then
-                return { '--config', makefiles_config }
-              else
-                return {}
-              end
-            end
-          }),
           null_ls.builtins.formatting.goimports,
           null_ls.builtins.formatting.prettier,
           null_ls.builtins.formatting.rustfmt,

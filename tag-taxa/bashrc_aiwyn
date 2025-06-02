@@ -4,6 +4,7 @@ z() {
     ["be"]="$HOME/code/taxa-ai/taxa-backend"
     ["dot"]="$HOME/.dotfiles"
     ["wiki"]="$HOME/Documents/wiki-taxa"
+    ["code"]="$HOME/code"
   )
 
   d=${shortcuts[$1]}

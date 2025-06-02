@@ -1,5 +1,5 @@
-elixir 1.17.3-otp-27
-erlang 27.1
+elixir 1.18.4-otp-27
+erlang 27.3.4
 golang 1.23.2
 julia 1.4.2
 nodejs 23.10.0
