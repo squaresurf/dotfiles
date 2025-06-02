@@ -2,12 +2,12 @@
 
 if [[ $1 == "light" ]]; then
   osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to false'
-  perl -pi -e 's/^set bg=dark$/set bg=light/' ~/.dotfiles/config/nvim/oldinit.vim
+  perl -pi -e 's/^vim.opt.background = '\''dark'\''$/vim.opt.background = '\''light'\''/' ~/.dotfiles/config/nvim/init.lua
   perl -pi -e 's/nord.toml", # colors/nord_light.toml", # colors/' ~/.config/alacritty/alacritty.toml
   cp ~/.config/alacritty/alacritty.toml ~/.dotfiles/config/alacritty/alacritty.toml
 else
   osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to true'
-  perl -pi -e 's/^set bg=light$/set bg=dark/' ~/.dotfiles/config/nvim/oldinit.vim
+  perl -pi -e 's/^vim.opt.background = '\''light'\''$/vim.opt.background = '\''dark'\''/' ~/.dotfiles/config/nvim/init.lua
   perl -pi -e 's/nord_light.toml", # colors/nord.toml", # colors/' ~/.config/alacritty/alacritty.toml
   cp ~/.config/alacritty/alacritty.toml ~/.dotfiles/config/alacritty/alacritty.toml
 fi
