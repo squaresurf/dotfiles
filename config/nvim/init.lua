@@ -6,45 +6,115 @@ vim.g.maplocalleader = ' l'
 vim.g.loaded_python_provider = 1
 vim.g.loaded_python3_provider = 1
 
--- Plugin management with vim-plug (keeping existing setup)
-vim.cmd([[
-call plug#begin('~/.local/share/nvim/plugged')
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
 
-Plug 'benmills/vimux'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'jose-elias-alvarez/null-ls.nvim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'lervag/vimtex'
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'shaunsingh/nord.nvim'
-Plug 'sheerun/vim-polyglot'
-Plug 'shumphrey/fugitive-gitlab.vim'
-Plug 'terrastruct/d2-vim'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-git'
-Plug 'tpope/vim-ragtag'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-rsi'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-vinegar'
-Plug 'williamboman/mason-lspconfig.nvim'
-Plug 'williamboman/mason.nvim'
-Plug '~/code/vision.vim'
+-- Setup lazy.nvim with plugins
+require("lazy").setup({
+  -- Core utilities
+  {
+    "nvim-lua/plenary.nvim",
+    lazy = true,
+  },
 
-call plug#end()
-]])
+  -- Colorscheme
+  {
+    "shaunsingh/nord.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme('nord')
+    end,
+  },
+
+  -- Tmux integration
+  "benmills/vimux",
+  "christoomey/vim-tmux-navigator",
+
+  -- Editor configuration
+  "editorconfig/editorconfig-vim",
+
+  -- FZF fuzzy finder
+  {
+    "junegunn/fzf",
+    build = function()
+      vim.fn["fzf#install"]()
+    end,
+  },
+  "junegunn/fzf.vim",
+
+  -- LaTeX support
+  "lervag/vimtex",
+
+  -- LSP and Mason
+  {
+    "williamboman/mason.nvim",
+    config = function()
+      require('mason').setup()
+    end,
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = { "williamboman/mason.nvim" },
+    config = function()
+      require('mason-lspconfig').setup()
+    end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+    },
+  },
+
+  -- Null-ls for formatting/linting
+  "jose-elias-alvarez/null-ls.nvim",
+
+  -- Language support
+  "sheerun/vim-polyglot",
+  "terrastruct/d2-vim",
+
+  -- Git integration
+  "tpope/vim-fugitive",
+  "tpope/vim-git",
+  "tpope/vim-rhubarb",
+  "shumphrey/fugitive-gitlab.vim",
+
+  -- Text manipulation
+  "tpope/vim-commentary",
+  "tpope/vim-endwise",
+  "tpope/vim-ragtag",
+  "tpope/vim-repeat",
+  "tpope/vim-rsi",
+  "tpope/vim-surround",
+  "tpope/vim-unimpaired",
+  "tpope/vim-vinegar",
+
+  -- Local plugin
+  {
+    dir = "~/code/vision.vim",
+    name = "vision.vim",
+  },
+})
 
 -- Basic settings
 vim.opt.encoding = 'utf8'
-vim.cmd('syntax on')
-vim.cmd('colorscheme nord')
+vim.cmd.syntax('on')
 vim.opt.background = 'dark'
 
 -- Editor settings
@@ -71,14 +141,16 @@ vim.opt.runtimepath:append('/usr/local/opt/fzf')
 vim.opt.grepprg = 'rg --vimgrep'
 
 -- Custom FZF Rg command
-vim.cmd([[
-command! -bang -nargs=* Rg
-      \ call fzf#vim#grep(
-      \   'rg --column --line-number --no-heading --color=always '.$RG_IGNORE.' '.shellescape(<q-args>), 1,
-      \   <bang>0 ? fzf#vim#with_preview('up:60%')
-      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-      \   <bang>0)
-]])
+vim.api.nvim_create_user_command('Rg', function(opts)
+  local args = opts.args
+  local bang = opts.bang
+  vim.fn['fzf#vim#grep'](
+    'rg --column --line-number --no-heading --color=always '..(vim.env.RG_IGNORE or '')..' '..vim.fn.shellescape(args),
+    1,
+    bang and vim.fn['fzf#vim#with_preview']('up:60%') or vim.fn['fzf#vim#with_preview']('right:50%:hidden', '?'),
+    bang
+  )
+end, { bang = true, nargs = '*' })
 
 -- VimTeX settings
 vim.g.tex_flavor = 'latex'
@@ -108,7 +180,9 @@ vim.keymap.set('v', '<leader>p', '"+p', opts)
 vim.keymap.set('v', '<leader>P', '"+P', opts)
 
 -- Abbreviations
-vim.cmd([[iabbrev <expr> ;d strftime("%Y-%m-%d")]])
+vim.keymap.set('ia', ';d', function()
+  return vim.fn.strftime('%Y-%m-%d')
+end, { expr = true })
 
 -- Autocommands
 local augroup = vim.api.nvim_create_augroup
@@ -234,10 +308,6 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<localleader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
-
--- Setup Mason and LSP servers
-require('mason').setup()
-require('mason-lspconfig').setup()
 
 -- LSP server configurations
 require('lspconfig').elixirls.setup{ on_attach = on_attach }
