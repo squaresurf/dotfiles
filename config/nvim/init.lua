@@ -82,8 +82,42 @@ require("lazy").setup({
     },
   },
 
-  -- none-ls for formatting/linting (null-ls replacement)
-  "nvimtools/none-ls.nvim",
+  -- Modern formatting with conform.nvim
+  {
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    keys = {
+      {
+        "<localleader>f",
+        function()
+          require("conform").format({ async = true, lsp_fallback = true })
+        end,
+        mode = "",
+        desc = "Format buffer",
+      },
+    },
+    opts = {
+      formatters_by_ft = {
+        go = { "goimports", "gofmt" },
+        javascript = { "prettier" },
+        typescript = { "prettier" },
+        javascriptreact = { "prettier" },
+        typescriptreact = { "prettier" },
+        css = { "prettier" },
+        html = { "prettier" },
+        json = { "prettier" },
+        yaml = { "prettier" },
+        markdown = { "prettier" },
+        rust = { "rustfmt" },
+        python = { "ruff_format" },
+      },
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+      },
+    },
+  },
 
   -- Language support
   "sheerun/vim-polyglot",
@@ -306,7 +340,6 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<localleader>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<localleader>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<localleader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
 -- LSP server configurations
@@ -322,24 +355,6 @@ require('lspconfig').ruff.setup{
 }
 require('lspconfig').gopls.setup{ on_attach = on_attach }
 require('lspconfig').rust_analyzer.setup{ on_attach = on_attach }
-
--- none-ls setup for formatting (null-ls replacement)
-local null_ls = require('null-ls')
-
-null_ls.setup({
-  sources = {
-    null_ls.builtins.formatting.goimports,
-    null_ls.builtins.formatting.prettier,
-    null_ls.builtins.formatting.rustfmt,
-  },
-})
-
--- Format on save
-autocmd('BufWritePre', {
-  callback = function()
-    vim.lsp.buf.format()
-  end,
-})
 
 -- MCP Copy functionality (migrated from previous init.lua)
 function copy_mcp_path()
