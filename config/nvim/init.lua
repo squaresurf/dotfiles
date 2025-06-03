@@ -82,8 +82,8 @@ require("lazy").setup({
     },
   },
 
-  -- Null-ls for formatting/linting
-  "jose-elias-alvarez/null-ls.nvim",
+  -- none-ls for formatting/linting (null-ls replacement)
+  "nvimtools/none-ls.nvim",
 
   -- Language support
   "sheerun/vim-polyglot",
@@ -323,7 +323,7 @@ require('lspconfig').ruff.setup{
 require('lspconfig').gopls.setup{ on_attach = on_attach }
 require('lspconfig').rust_analyzer.setup{ on_attach = on_attach }
 
--- null-ls setup for formatting
+-- none-ls setup for formatting (null-ls replacement)
 local null_ls = require('null-ls')
 
 null_ls.setup({
