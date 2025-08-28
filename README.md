@@ -9,6 +9,19 @@ dotfiles and git to keep them in sync across machines. Here are some [install
 instructions](https://github.com/thoughtbot/dotfiles#install) from another
 dotfile project.
 
+### Nix
+
+Nix is required for install of all packages.
+
+As long as all the dotfiles in this repo are symlinked you can then run `nix-env -irf env.nix` in the dotfiles
+directory to install all the packages.
+
+## Nix Project
+
+We need to eventually address the following:
+
+* Workflow currently is centered on just darwin (i.e. nixpkgs revision and the script to check it)
+
 ## License
 
 [MIT](LICENSE)

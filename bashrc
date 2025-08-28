@@ -193,27 +193,6 @@ if [ -n "$(which direnv)" ]; then
   eval "$(direnv hook bash)"
 fi
 
-# This is in reverse order.
-paths=(
-    /opt/homebrew/opt/openjdk/bin
-    /usr/local/opt/sqlite/bin
-    $HOME/.poetry/bin
-    /usr/local/sbin
-    $HOME/Library/Haskell/bin
-    /usr/local/go/bin
-    $GOPATH/bin
-    /usr/local/opt/openssl/bin
-    /Library/TeX/texbin
-    $HOME/.local/bin # $haskell_local_bin
-    $HOME/bin
-)
-
-for p in ${paths[@]}; do
-    if [[ -d $p ]]; then
-        export PATH="$p:$PATH";
-    fi
-done
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Output my dotfiles status
@@ -225,12 +204,6 @@ if [ -d /opt/asdf-vm ]; then
   source /opt/asdf-vm/asdf.sh
 fi
 # asdf end - - - - - - - - - -
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then source "$HOME/google-cloud-sdk/path.bash.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]; then source "$HOME/google-cloud-sdk/completion.bash.inc"; fi
 
 cargo_env=$HOME/.cargo/env
 if [ -f "$cargo_env" ]; then source "$cargo_env"; fi
