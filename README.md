@@ -23,6 +23,7 @@ directory to install all the packages.
 We need to eventually address the following:
 
 * Workflow currently is centered on just darwin (i.e. nixpkgs revision and the script to check it)
+* What is the cadence for nix cleanup?
 
 ## License
 
