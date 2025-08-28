@@ -13,6 +13,8 @@ dotfile project.
 
 Nix is required for install of all packages.
 
+**Note:** make sure to remove nix install to `/etc/bashrc` as it causes issues.
+
 As long as all the dotfiles in this repo are symlinked you can then run `nix-env -irf env.nix` in the dotfiles
 directory to install all the packages.
 
