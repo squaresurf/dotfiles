@@ -2,7 +2,26 @@
 
 sess_name=$1
 if [[ -z "$sess_name" ]]; then
-  sess_name=$(basename $(pwd) | sed "s/\./_dot_/g")
+  # Default session name is the current directory's name
+  current_dir=$(basename "$(pwd)")
+  raw_sess_name=$current_dir
+
+  # If in a git repo and the parent dir matches the repo name, use parent/current.
+  if [[ -d .git || -f .git ]]; then
+    remote_url=$(git config --get remote.origin.url 2>/dev/null)
+    if [[ -n "$remote_url" ]]; then
+      # Extract repo name from remote URL (e.g., .../repo.git -> repo)
+      path_part=${remote_url#*:}
+      repo_name=$(basename "$path_part" .git)
+
+      parent_dir_name=$(basename "$(dirname "$(pwd)")")
+
+      if [[ "$repo_name" == "$parent_dir_name" ]]; then
+        raw_sess_name="$parent_dir_name/$current_dir"
+      fi
+    fi
+  fi
+  sess_name=$(echo "$raw_sess_name" | sed "s/\./_dot_/g")
 fi
 
 exists=$(tmux list-sessions | grep "^$sess_name:")
@@ -11,9 +30,9 @@ if [[ -n "$exists" ]]; then
     exit 0
 fi
 
-tmux new-session -d -s $sess_name -n vim
+tmux new-session -d -s $sess_name -n nvim
 
-if [[ -d .git ]]; then
+if [[ -d .git || -f .git ]]; then
     tmux new-window -d -t $sess_name -n git
 fi
 
