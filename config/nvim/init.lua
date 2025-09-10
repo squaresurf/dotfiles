@@ -125,9 +125,7 @@ require("lazy").setup({
 
   -- Git integration
   "tpope/vim-fugitive",
-  "tpope/vim-git",
   "tpope/vim-rhubarb",
-  "shumphrey/fugitive-gitlab.vim",
 
   -- Text manipulation
   "tpope/vim-commentary",
@@ -143,6 +141,7 @@ require("lazy").setup({
   {
     dir = "~/code/vision.vim",
     name = "vision.vim",
+    lazy = false,
   },
 })
 
@@ -216,6 +215,10 @@ vim.keymap.set('v', '<leader>P', '"+P', opts)
 -- Abbreviations
 vim.keymap.set('ia', ';d', function()
   return vim.fn.strftime('%Y-%m-%d')
+end, { expr = true })
+
+vim.keymap.set('ia', ';t', function()
+  return vim.fn.strftime('%H:%M:%S')
 end, { expr = true })
 
 -- Autocommands
