@@ -43,6 +43,8 @@
   defaultBranch = main
 [includeIf "gitdir:~/code/taxa-ai/"]
   path = ~/.gitconfig-taxa
+[includeIf "gitdir:~/code/aiwynai/"]
+  path = ~/.gitconfig-taxa
 [submodule]
 	recurse = true
 [url "git@github.com:"]
