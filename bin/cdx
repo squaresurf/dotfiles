@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-codex -m gpt-5 --search model_reasoning_effort="high"

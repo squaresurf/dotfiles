@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+read -t 1 -d '}' json
+
+if [[ -z "$json" ]]; then
+  echo "Missing json from claude"
+  exit 2
+fi
+
+title="Claude"
+subtitle=$(basename $(pwd))
+message=$(echo "$json}" | jq '.message')
+
+if [[ "$message" == "null" ]]; then
+  message='"Stopped"'
+fi
+
+sounds=(
+  Basso
+  Blow
+  Bottle
+  Frog
+  Funk
+  Glass
+  Hero
+  Morse
+  Ping
+  Pop
+  Purr
+  Sosumi
+  Submarine
+  Tink
+)
+
+# Submarine
+sound=${sounds[12]}
+
+osascript -e "display notification $message with title \"$title\" subtitle \"$subtitle\" sound name \"$sound\""
